@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>代码规范 on 程旭的个人博客</title>
+        <link>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</link>
+        <description>Recent content in 代码规范 on 程旭的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>ChengXu</copyright><atom:link href="http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" />
+    </channel>
+</rss>
