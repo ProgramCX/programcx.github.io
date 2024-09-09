@@ -9,11 +9,11 @@
         <copyright>ChengXu</copyright>
         <lastBuildDate>Mon, 09 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java中super关键字的理解</title>
-        <link>https://programcx.github.io/p/java/</link>
+        <link>https://programcx.github.io/p/java%E4%B8%ADsuper%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/</link>
         <pubDate>Mon, 09 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://programcx.github.io/p/java/</guid>
-        <description>&lt;img src="https://programcx.github.io/p/java/java.jpg" alt="Featured image of post Java中super关键字的理解" /&gt;&lt;h1 id=&#34;java中super关键字的理解&#34;&gt;Java中super关键字的理解
+        <guid>https://programcx.github.io/p/java%E4%B8%ADsuper%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+        <description>&lt;img src="https://programcx.github.io/p/java%E4%B8%ADsuper%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/java.jpg" alt="Featured image of post Java中super关键字的理解" /&gt;&lt;h1 id=&#34;java中super关键字的理解&#34;&gt;Java中super关键字的理解
 &lt;/h1&gt;&lt;h2 id=&#34;访问超类的成员函数和变量&#34;&gt;访问超类的成员函数和变量
 &lt;/h2&gt;&lt;p&gt;举个例子：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
