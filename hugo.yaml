@@ -63,23 +63,90 @@ params:
             enabled: true
             default: Licensed under CC BY-NC-SA 4.0
 
-    params:
-        comments:
-            enabled: true
+    comments:
+        enabled: true
+        provider: giscus
+
+        disqusjs:
+            shortname:
+            apiUrl:
+            apiKey:
+            admin:
+            adminLabel:
+
+        utterances:
+            repo:
+            issueTerm: pathname
+            label:
+
+        beaudar:
+            repo:
+            issueTerm: pathname
+            label:
+            theme:        
+
+        remark42:
+            host:
+            site:
+            locale:
+
+        vssue:
+            platform:
+            owner:
+            repo:
+            clientId:
+            clientSecret:
+            autoCreateIssue: false
+
+        # Waline client configuration see: https://waline.js.org/en/reference/component.html
+        waline:
+            serverURL:
+            lang:
+            pageview:
+            emoji:
+                - https://unpkg.com/@waline/emojis@1.0.1/weibo
+            requiredMeta:
+                - name
+                - email
+                - url
+            locale:
+                admin: Admin
+                placeholder:
+
+        twikoo:
+            envId:
+            region:
+            path:
+            lang:
+
+        # See https://cactus.chat/docs/reference/web-client/#configuration for description of the various options
+        cactus:
+            defaultHomeserverUrl: "https://matrix.cactus.chat:8448"
+            serverName: "cactus.chat"
+            siteName: "" # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
+
         giscus:
-            enabled: true
-            repo: "ProgramCX/programcx.github.io"  # GitHub 仓库名
-            repo-id: "R_kgDOMtJx4g"  # 仓库的 repo-id
-            category: "Announcements"  # 讨论区分类
-            category-id: "DIC_kwDOMtJx4s4CiWUj"  # 讨论区分类的 id
-            mapping: "pathname"  # 将 giscus 线程与页面路径映射
-            reactions-enabled: "1"  # 启用或禁用表情反应 (1 启用，0 禁用)
-            emit-metadata: "0"  # 启用或禁用元数据发出 (1 启用，0 禁用)
-            input-position: "bottom"  # 输入框位置 (top 或 bottom)
-            lang: "zh-CN"  # 评论区语言
-            lightTheme: "light"
-            darkTheme: "dark"
-            
+            repo: ProgramCX/programcx.github.io
+            repoID: R_kgDOMtJx4g
+            category: Announcements
+            categoryID: DIC_kwDOMtJx4s4CiWUj
+            mapping: pathname
+            theme: preferred_color_scheme
+            reactionsEnabled: 1
+            emitMetadata: 0
+            lang: zh-CN
+
+        gitalk:
+            owner:
+            admin:
+            repo:
+            clientID:
+            clientSecret:
+
+        cusdis:
+            host:
+            id:
+    widgets:
         homepage:
             - type: search
             - type: archives
