@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Qt 5.15 connect() 函数的一个大坑">
+<title>Qt 5.15 connect() 函数的一个大坑</title>
+
+<link rel='canonical' href='https://programcx.github.io/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Qt 5.15 connect() 函数的一个大坑">
+<meta property='og:description' content="Qt 5.15 connect() 函数的一个大坑">
+<meta property='og:url' content='https://programcx.github.io/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/'>
+<meta property='og:site_name' content='程旭的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-09-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://programcx.github.io/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/qt.webp' />
+<meta name="twitter:title" content="Qt 5.15 connect() 函数的一个大坑">
+<meta name="twitter:description" content="Qt 5.15 connect() 函数的一个大坑"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://programcx.github.io/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/qt.webp' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu1650936153326096863.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🤩</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">程旭的个人博客</a></h1>
+            <h2 class="site-description">人定胜天，而我逆天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/ProgramCX/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/">
+                <img src="/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/qt_hu1131985424296538558.webp"
+                        srcset="/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/qt_hu1131985424296538558.webp 800w, /p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/qt_hu8579353901652910537.webp 1600w"
+                        width="800" 
+                        height="538" 
+                        loading="lazy"
+                        alt="Featured image of post Qt 5.15 connect() 函数的一个大坑" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;/" style="background-color: #2a9d8f; color: #fff;">
+                C&#43;&#43;
+            </a>
+        
+            <a href="/categories/qt/" >
+                Qt
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/">Qt 5.15 connect() 函数的一个大坑</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Qt 5.15 connect() 函数的一个大坑
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 16, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="qt-515-connect-函数的一个大坑">Qt 5.15 connect() 函数的一个大坑
+</h1><p>有以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"> <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">styleComboBox</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">QComboBox</span><span class="o">::</span><span class="n">currentIndexChanged</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TODO: change theme
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">&#34;User change default theme to {}&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">AppConfig</span><span class="o">::</span><span class="n">instance</span><span class="p">().</span><span class="n">setBasic</span><span class="p">(</span><span class="s">&#34;style&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上代码将<code>ui-&gt;styleComboBox</code>的<code>QComboBox::currentTextChanged</code>信号连接至lambda表达式里的匿名函数。看似没有什么问题，但是在Qt 5.15上报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">SettingsBasicWidget</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span> <span class="n">error</span><span class="p">:</span> <span class="n">no</span> <span class="n">matching</span> <span class="n">member</span> <span class="n">function</span> <span class="k">for</span> <span class="n">call</span> <span class="n">to</span> <span class="s1">&#39;connect&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">styleComboBox</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">QComboBox</span><span class="p">::</span><span class="n">currentIndexChanged</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="p">[</span><span class="n">this</span><span class="p">](</span><span class="ne">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">^~~~~~~</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">222</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">function</span> <span class="ow">not</span> <span class="n">viable</span><span class="p">:</span> <span class="n">no</span> <span class="n">overload</span> <span class="n">of</span> <span class="s1">&#39;currentIndexChanged&#39;</span> <span class="n">matching</span> <span class="s1">&#39;const char *&#39;</span> <span class="k">for</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">argument</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">QMetaObject</span><span class="p">::</span><span class="n">Connection</span> <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">QObject</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="k">signal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">225</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">function</span> <span class="ow">not</span> <span class="n">viable</span><span class="p">:</span> <span class="n">no</span> <span class="n">overload</span> <span class="n">of</span> <span class="s1">&#39;currentIndexChanged&#39;</span> <span class="n">matching</span> <span class="s1">&#39;const QMetaMethod&#39;</span> <span class="k">for</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">argument</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">QMetaObject</span><span class="p">::</span><span class="n">Connection</span> <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">QObject</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="k">const</span> <span class="n">QMetaMethod</span> <span class="o">&amp;</span><span class="k">signal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">481</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">function</span> <span class="ow">not</span> <span class="n">viable</span><span class="p">:</span> <span class="n">no</span> <span class="n">overload</span> <span class="n">of</span> <span class="s1">&#39;currentIndexChanged&#39;</span> <span class="n">matching</span> <span class="s1">&#39;const char *&#39;</span> <span class="k">for</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">argument</span>
+</span></span><span class="line"><span class="cl"><span class="n">inline</span> <span class="n">QMetaObject</span><span class="p">::</span><span class="n">Connection</span> <span class="n">QObject</span><span class="p">::</span><span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">QObject</span> <span class="o">*</span><span class="n">asender</span><span class="p">,</span> <span class="k">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">asignal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">242</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">template</span> <span class="n">ignored</span><span class="p">:</span> <span class="n">couldn</span><span class="s1">&#39;t infer template argument &#39;</span><span class="n">Func1</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">inline</span> <span class="n">QMetaObject</span><span class="p">::</span><span class="n">Connection</span> <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">typename</span> <span class="n">QtPrivate</span><span class="p">::</span><span class="n">FunctionPointer</span><span class="o">&lt;</span><span class="n">Func1</span><span class="o">&gt;</span><span class="p">::</span><span class="ne">Object</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="n">Func1</span> <span class="k">signal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                          <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">283</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">template</span> <span class="n">ignored</span><span class="p">:</span> <span class="n">couldn</span><span class="s1">&#39;t infer template argument &#39;</span><span class="n">Func1</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">typename</span> <span class="n">QtPrivate</span><span class="p">::</span><span class="n">FunctionPointer</span><span class="o">&lt;</span><span class="n">Func1</span><span class="o">&gt;</span><span class="p">::</span><span class="ne">Object</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="n">Func1</span> <span class="k">signal</span><span class="p">,</span> <span class="k">const</span> <span class="n">QObject</span> <span class="o">*</span><span class="n">context</span><span class="p">,</span> <span class="n">Func2</span> <span class="n">slot</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">322</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">template</span> <span class="n">ignored</span><span class="p">:</span> <span class="n">couldn</span><span class="s1">&#39;t infer template argument &#39;</span><span class="n">Func1</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">typename</span> <span class="n">QtPrivate</span><span class="p">::</span><span class="n">FunctionPointer</span><span class="o">&lt;</span><span class="n">Func1</span><span class="o">&gt;</span><span class="p">::</span><span class="ne">Object</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="n">Func1</span> <span class="k">signal</span><span class="p">,</span> <span class="k">const</span> <span class="n">QObject</span> <span class="o">*</span><span class="n">context</span><span class="p">,</span> <span class="n">Func2</span> <span class="n">slot</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">274</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">function</span> <span class="n">template</span> <span class="ow">not</span> <span class="n">viable</span><span class="p">:</span> <span class="n">requires</span> <span class="mi">3</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">but</span> <span class="mi">4</span> <span class="n">were</span> <span class="n">provided</span>
+</span></span><span class="line"><span class="cl">            <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">typename</span> <span class="n">QtPrivate</span><span class="p">::</span><span class="n">FunctionPointer</span><span class="o">&lt;</span><span class="n">Func1</span><span class="o">&gt;</span><span class="p">::</span><span class="ne">Object</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="n">Func1</span> <span class="k">signal</span><span class="p">,</span> <span class="n">Func2</span> <span class="n">slot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">runner</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">FlowD</span><span class="o">/</span><span class="n">Qt</span><span class="o">/</span><span class="mf">5.15</span><span class="o">.</span><span class="mi">2</span><span class="o">/</span><span class="n">clang_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">QtCore</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Headers</span><span class="o">/</span><span class="n">qobject</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="mi">314</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span> <span class="n">note</span><span class="p">:</span> <span class="n">candidate</span> <span class="n">function</span> <span class="n">template</span> <span class="ow">not</span> <span class="n">viable</span><span class="p">:</span> <span class="n">requires</span> <span class="mi">3</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">but</span> <span class="mi">4</span> <span class="n">were</span> <span class="n">provided</span>
+</span></span><span class="line"><span class="cl">            <span class="n">connect</span><span class="p">(</span><span class="k">const</span> <span class="n">typename</span> <span class="n">QtPrivate</span><span class="p">::</span><span class="n">FunctionPointer</span><span class="o">&lt;</span><span class="n">Func1</span><span class="o">&gt;</span><span class="p">::</span><span class="ne">Object</span> <span class="o">*</span><span class="n">sender</span><span class="p">,</span> <span class="n">Func1</span> <span class="k">signal</span><span class="p">,</span> <span class="n">Func2</span> <span class="n">slot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="n">error</span> <span class="n">generated</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为什么会出现这种情况呢？
+因为QComboBox 有两个重载的信号，原型分别是<code>void	currentTextChanged(const QString &amp;text)</code>和<code>void	currentIndexChanged(int index)</code>，上面的代码我们明显是想要连接<code>void	currentIndexChanged(int index)</code>这个信号，但是编译器当成了<code>void	currentTextChanged(const QString &amp;text)</code>这个信号，所以会报出参数不匹配的错误:<code>matching member function for call to 'connect' connect(ui-&gt;styleComboBox, &amp;QComboBox::currentIndexChanged, this, [this](int index) </code>。
+上面的代码在Qt 6上不会报错。</p>
+<p>我们该如何解决呢？只需使用预定义宏，将比Qt 6.0.0版本低的部分的代码改成<code>QOverload&lt;int&gt;::of(&amp;QComboBox::currentIndexChanged)</code>即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#if QT_VERSION &lt;= QT_VERSION_CHECK(6, 0, 0)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">styleComboBox</span><span class="p">,</span> <span class="n">QOverload</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">of</span><span class="p">(</span><span class="o">&amp;</span><span class="n">QComboBox</span><span class="o">::</span><span class="n">currentIndexChanged</span><span class="p">),</span> <span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TODO: change theme
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">&#34;User change default theme to {}&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">AppConfig</span><span class="o">::</span><span class="n">instance</span><span class="p">().</span><span class="n">setBasic</span><span class="p">(</span><span class="s">&#34;style&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="n">connect</span><span class="p">(</span><span class="n">ui</span><span class="o">-&gt;</span><span class="n">styleComboBox</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">QComboBox</span><span class="o">::</span><span class="n">currentIndexChanged</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TODO: change theme
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="s">&#34;User change default theme to {}&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">AppConfig</span><span class="o">::</span><span class="n">instance</span><span class="p">().</span><span class="n">setBasic</span><span class="p">(</span><span class="s">&#34;style&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-/">
+        
+        
+            <div class="article-image">
+                <img src="/p/c-/cpp.ded21741e7c35adee56426f11c6afcfb_hu745466164253210211.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post C&#43;&#43; 代码规范总结"
+                        data-key="C&#43;&#43;" 
+                        data-hash="md5-3tIXQefDWt7lZCbxHGr8&#43;w==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 代码规范总结</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/leetcode-%E7%AC%AC994%E9%A2%98-%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/">
+        
+        
+            <div class="article-image">
+                <img src="/p/leetcode-%E7%AC%AC994%E9%A2%98-%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/question.461a69dd506a0a1b5d67b4ecfd535eb2_hu7962622016502790321.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post LeetCode 第994题 腐烂的橘子"
+                        
+                        data-hash="md5-Rhpp3VBqChtdZ7Ts/VNesg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">LeetCode 第994题 腐烂的橘子</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%B4%9B%E8%B0%B7-p1162-%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">洛谷 P1162 填涂颜色 广度优先搜索</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="ProgramCX/programcx.github.io"
+    data-repo-id="R_kgDOMtJx4g"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMtJx4s4CiWUj"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark_dimmed');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 ChengXu
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
