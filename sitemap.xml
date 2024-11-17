@@ -3,13 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://programcx.github.io/</loc>
-    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://programcx.github.io/categories/</loc>
-    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://programcx.github.io/categories/java/</loc>
+    <lastmod>2024-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://programcx.github.io/p/java-%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/</loc>
+    <lastmod>2024-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://programcx.github.io/categories/java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2024-11-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://programcx.github.io/post/</loc>
-    <lastmod>2024-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2024-11-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://programcx.github.io/p/uncaught-typeerrorxxx.component-is-not-a-function/</loc>
     <lastmod>2024-10-15T00:00:00+00:00</lastmod>
@@ -25,9 +34,6 @@
   </url><url>
     <loc>https://programcx.github.io/p/qt-5.15-connect-%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91/</loc>
     <lastmod>2024-09-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://programcx.github.io/categories/java/</loc>
-    <lastmod>2024-09-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://programcx.github.io/p/java%E4%B8%ADsuper%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
     <lastmod>2024-09-09T00:00:00+00:00</lastmod>

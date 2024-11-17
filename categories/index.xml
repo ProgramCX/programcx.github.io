@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
-        <lastBuildDate>Tue, 15 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 16 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Java</title>
+        <link>https://programcx.github.io/categories/java/</link>
+        <pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/java/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Java网络编程</title>
+        <link>https://programcx.github.io/categories/java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+        <pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>前端</title>
         <link>https://programcx.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
         <pubDate>Tue, 15 Oct 2024 00:00:00 +0000</pubDate>
@@ -29,14 +45,6 @@
         <pubDate>Mon, 16 Sep 2024 00:00:00 +0000</pubDate>
         
         <guid>https://programcx.github.io/categories/qt/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Java</title>
-        <link>https://programcx.github.io/categories/java/</link>
-        <pubDate>Mon, 09 Sep 2024 00:00:00 +0000</pubDate>
-        
-        <guid>https://programcx.github.io/categories/java/</guid>
         <description></description>
         </item>
         <item>
