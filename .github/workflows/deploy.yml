@@ -42,7 +42,7 @@ jobs:
                   # -r: 表示递归地同步目录及其子目录
                   # --delete: 表示在目标目录中删除源目录中不存在的文件
               switches: -avzr --delete
-              path: ./public
+              path: ./public/
               remote_path: /usr/local/nginx/blog-html/
               remote_host: ${{ secrets.SERVER_HOST }} # 远程主机 IP
               remote_port: ${{ secrets.SERVER_PORT }} # ssh 端口
