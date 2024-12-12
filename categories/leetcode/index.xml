@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>LeetCode on 程旭的个人博客</title>
+        <title>LeetCode on 程旭的一天</title>
         <link>https://programcx.github.io/categories/leetcode/</link>
-        <description>Recent content in LeetCode on 程旭的个人博客</description>
+        <description>Recent content in LeetCode on 程旭的一天</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
