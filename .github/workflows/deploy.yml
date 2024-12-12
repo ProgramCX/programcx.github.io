@@ -43,7 +43,7 @@ jobs:
                   # --delete: 表示在目标目录中删除源目录中不存在的文件
               switches: -avzr --delete
               path: ./public
-              remote_path: /local/nginx/blog-html/
+              remote_path: /usr/local/nginx/blog-html/
               remote_host: ${{ secrets.SERVER_HOST }} # 远程主机 IP
               remote_port: ${{ secrets.SERVER_PORT }} # ssh 端口
               remote_user: ${{ secrets.SERVER_USER }} # ssh user
