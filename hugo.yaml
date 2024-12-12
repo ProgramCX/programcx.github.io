@@ -16,7 +16,7 @@ hasCJKLanguage: true
 languages:
     zh-cn:
         languageName: 中文
-        title: 程旭的个人博客
+        title: 程旭的一天
         weight: 2
         params:
             description: 欢迎来到程旭的个人博客
