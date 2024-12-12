@@ -32,3 +32,19 @@ jobs:
               PUBLISH_BRANCH: gh-pages
               PUBLISH_DIR: ./public
               commit_message: auto deploy
+              
+        - name: Deploy to cloud server
+          uses: burnett01/rsync-deployments@6.0.0
+          with:
+                  # -a: 表示以归档模式进行同步，保留文件的所有属性和权限
+                  # -v: 表示输出详细的同步过程信息
+                  # -z: 表示在传输文件时进行压缩，以减少传输时间和带宽
+                  # -r: 表示递归地同步目录及其子目录
+                  # --delete: 表示在目标目录中删除源目录中不存在的文件
+              switches: -avzr --delete
+              path: ./public
+              remote_path: /local/nginx/blog-html/
+              remote_host: ${{ secrets.SERVER_HOST }} # 远程主机 IP
+              remote_port: ${{ secrets.SERVER_PORT }} # ssh 端口
+              remote_user: ${{ secrets.SERVER_USER }} # ssh user
+              remote_key: ${{ secrets.SERVER_TOKEN }} # ssh 私钥

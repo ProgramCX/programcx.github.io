@@ -2,7 +2,7 @@ baseurl: https://programcx.github.io
 languageCode: zh-cn
 theme: hugo-theme-stack
 paginate: 3
-title: 程旭的个人博客
+title: 程旭的一天
 copyright: ChengXu
 
 # Theme i18n support
