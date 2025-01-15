@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="MyBatis 的常用配置和核心对象">
+<title>MyBatis 常用配置</title>
+
+<link rel='canonical' href='https://programcx.github.io/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="MyBatis 常用配置">
+<meta property='og:description' content="MyBatis 的常用配置和核心对象">
+<meta property='og:url' content='https://programcx.github.io/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/'>
+<meta property='og:site_name' content='程旭的个人博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-01-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://programcx.github.io/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/MyBatis.png' />
+<meta name="twitter:title" content="MyBatis 常用配置">
+<meta name="twitter:description" content="MyBatis 的常用配置和核心对象"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://programcx.github.io/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/MyBatis.png' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu731c038e4e597ec05b354e416dfde78c_752362_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">👨🏼‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">程旭的个人博客</a></h1>
+            <h2 class="site-description">人定胜天，而我逆天</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/ProgramCX/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-sqlsession">1. SqlSession</a></li>
+    <li><a href="#2-mybatis-核心配置文件元素">2. MyBatis 核心配置文件元素</a>
+      <ol>
+        <li><a href="#22-properties元素">2.2 <code>&lt;properties&gt;</code>元素</a></li>
+        <li><a href="#23-typealias元素">2.3 <code>&lt;typeAlias&gt;</code>元素</a></li>
+        <li><a href="#24-environments元素">2.4 <code>&lt;environments&gt;</code>元素</a></li>
+        <li><a href="#26-mappers元素">2.6 <code>&lt;mappers&gt;</code>元素</a></li>
+        <li><a href="#27-select元素">2.7 <code>&lt;select&gt;</code>元素</a></li>
+        <li><a href="#28-insert元素">2.8 <code>&lt;insert&gt;</code>元素</a></li>
+        <li><a href="#29-update元素">2.9 <code>&lt;update&gt;</code>元素</a></li>
+        <li><a href="#210-delete元素">2.10 <code>&lt;delete&gt;</code>元素</a></li>
+        <li><a href="#211-selectkey元素">2.11 <code>&lt;selectKey&gt;</code>元素</a></li>
+        <li><a href="#211-resultmap元素">2.11 <code>&lt;resultMap&gt;</code>元素</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">
+                <img src="/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/MyBatis_huf530186ff050aabde73a47f8290c5d55_111513_800x0_resize_box_3.png"
+                        srcset="/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/MyBatis_huf530186ff050aabde73a47f8290c5d55_111513_800x0_resize_box_3.png 800w, /p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/MyBatis_huf530186ff050aabde73a47f8290c5d55_111513_1600x0_resize_box_3.png 1600w"
+                        width="800" 
+                        height="320" 
+                        loading="lazy"
+                        alt="Featured image of post MyBatis 常用配置" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/mybatis/" style="background-color: #2a9d8f; color: #fff;">
+                MyBatis
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/mybatis-%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/">MyBatis 常用配置</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            MyBatis 的常用配置和核心对象
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 16, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="mybatis-中核心对象">MyBatis 中核心对象
+</h1><h2 id="1-sqlsession">1. SqlSession
+</h2><p>SqlSession 中提供了不同的查询方法。其中可以查询单个，也可以查询符合查询条件的集合。不但可以进行查询操作，也可以进行增删改的功能。下面介绍几个常用的方法：</p>
+<ol>
+<li><code>&lt;T&gt; T selectOne(String statement, Object parameter)</code> :  parameter 是语句所需要的参数，用来将<strong>参数传递给 SQL 语句</strong>。该方法会返回一个xml映射配置中指定的类型。</li>
+<li><code>&lt;E&gt; List&lt;E&gt; selectList(String statement, Object parameter)</code> :<strong>查询泛型对象的集合</strong>。</li>
+<li><code>int insert(String statement, Object parameter)</code> ：插入方法，参数<code>statement</code> 是<code>&lt;insert&gt;</code> 的<code>id</code>，<code>parameter</code> 是插入语句所需要的参数，也就是后面要学到的<code>parameterType</code></li>
+<li><code>int update(String statement, Object parameter)</code>,<code>int delete(String statement, Object parameter)</code> 用法类似。</li>
+<li><code>void commit()</code>：提交事务。</li>
+<li><code>void rollback()</code>：回滚事务。</li>
+<li><code>void close()</code>：关闭<code>SqlSession</code>对象。</li>
+</ol>
+<h2 id="2-mybatis-核心配置文件元素">2. MyBatis 核心配置文件元素
+</h2><h3 id="22-properties元素">2.2 <code>&lt;properties&gt;</code>元素
+</h3><p>用来存放数据库连接驱动类型、sql地址、用户名和密码。然后在<code>mybatis-config.xml</code>里面引入、使用。</p>
+<h3 id="23-typealias元素">2.3 <code>&lt;typeAlias&gt;</code>元素
+</h3><p>给全限定名起一个别名(Alias)。</p>
+<p>在<code>mybatis-config.xml</code>文件里面加上：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;typeAliases&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;typeAlias</span> <span class="na">alias=</span><span class="s">&#34;User&#34;</span> <span class="na">type=</span><span class="s">&#34;org.example.pojo.User&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/typeAliases&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="24-environments元素">2.4 <code>&lt;environments&gt;</code>元素
+</h3><p><strong>可以给开发环境、生产环境进行不同的配置。</strong></p>
+<ul>
+<li>UNPOOLED：无连接池类型。每次请求会打开和关闭数据库。适用于对性能要求不高的简单应用程序。</li>
+<li>POOLED：连接池类型。</li>
+</ul>
+<h3 id="26-mappers元素">2.6 <code>&lt;mappers&gt;</code>元素
+</h3><p>用来引入映射文件。基本结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mappers&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/UserMapper.xml&#34;</span><span class="nt">/&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mappers&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="27-select元素">2.7 <code>&lt;select&gt;</code>元素
+</h3><p>该标签可以实现查询操作，可以将查询结果映射为POJO对象，并且返回。</p>
+<p>简单的查询例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findUserById&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;int&#34;</span> <span class="na">resultType=</span><span class="s">&#34;cn.programcx.POJO.User&#34;</span> <span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         SELECT * FROM user WHERE id = #{id}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>这个语句接受一个int类型的参数，返回一个<code>cn.programcx.POJO</code>包中的对象。</strong></p>
+<p>参数：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">在命名空间中唯一的标识符，可以被用来引用这条语句。</td>
+</tr>
+<tr>
+<td style="text-align:left">parameterType</td>
+<td style="text-align:left">将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（unset）。</td>
+</tr>
+<tr>
+<td style="text-align:left">resultType</td>
+<td style="text-align:left">期望从这条语句中返回结果的类全限定名或别名。注意，如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身的类型。 resultType 和 resultMap 之间只能同时使用一个。</td>
+</tr>
+<tr>
+<td style="text-align:left">resultMap</td>
+<td style="text-align:left">期望从这条语句中返回结果的类全限定名或别名。注意，如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身的类型。 resultType 和 resultMap 之间只能同时使用一个。</td>
+</tr>
+<tr>
+<td style="text-align:left">flushCache</td>
+<td style="text-align:left">将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。</td>
+</tr>
+<tr>
+<td style="text-align:left">useCache</td>
+<td style="text-align:left">将其设置为 true 后，将会导致本条语句的结果被二级缓存缓存起来，默认值：对 select 元素为 true。</td>
+</tr>
+<tr>
+<td style="text-align:left">timeout</td>
+<td style="text-align:left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为未设置（unset）（依赖数据库驱动）。</td>
+</tr>
+<tr>
+<td style="text-align:left">fetchSize</td>
+<td style="text-align:left">这是一个给驱动的建议值，尝试让驱动程序每次批量返回的结果行数等于这个设置值。默认值为未设置（unset）（依赖驱动）。</td>
+</tr>
+<tr>
+<td style="text-align:left">statementType</td>
+<td style="text-align:left">可选 STATEMENT，PREPARED 或 CALLABLE。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
+</tr>
+<tr>
+<td style="text-align:left">resultSetType</td>
+<td style="text-align:left">FORWARD_ONLY，SCROLL_SENSITIVE, SCROLL_INSENSITIVE 或 DEFAULT（等价于 unset）中的一个，默认值为 unset（依赖数据库驱动）。</td>
+</tr>
+<tr>
+<td style="text-align:left">databaseId</td>
+<td style="text-align:left">如果配置了数据库厂商标识（databaseIdProvider），MyBatis 会加载所有不带 databaseId 或匹配当前 databaseId 的语句；如果带和不带的语句都有，则不带的会被忽略。</td>
+</tr>
+<tr>
+<td style="text-align:left">resultOrdered</td>
+<td style="text-align:left">这个设置仅针对嵌套结果 select 语句：如果为 true，将会假设包含了嵌套结果集或是分组，当返回一个主结果行时，就不会产生对前面结果集的引用。默认值：false。</td>
+</tr>
+<tr>
+<td style="text-align:left">resultSets</td>
+<td style="text-align:left">这个设置仅适用于多结果集的情况。它将列出语句执行后返回的结果集并赋予每个结果集一个名称，多个名称之间以逗号分隔。</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>注意：如果映射的POJO对象和指定查询的数据表中名称不一致，不能使用<code>resultType</code>，否则无法进行映射，会抛出异常；如果名称不一致，应使用<a class="link" href="#section1" >resultMap</a>（后面介绍）</strong>。</p>
+<h3 id="28-insert元素">2.8 <code>&lt;insert&gt;</code>元素
+</h3><p>insert标签用来指定插入记录的操作和属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insertUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;cn.programcx.POJO&#34;</span> <span class="na">useGeneratedKeys=</span><span class="s">&#34;true&#34;</span> <span class="na">keyProperty=</span><span class="s">&#34;id&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        INSERT INTO user(name,sex,email,phone,address,password) values (#{name},#{sex},#{email},#{phone},#{address},#{password})
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，<code>#{name}</code>表示映射的POJO对象的成员变量·<code>name</code>。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">在命名空间中唯一的标识符，可以被用来引用这条语句。</td>
+</tr>
+<tr>
+<td style="text-align:left">parameterType</td>
+<td style="text-align:left">将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（unset）。</td>
+</tr>
+<tr>
+<td style="text-align:left">parameterMap</td>
+<td style="text-align:left">用于引用外部 parameterMap 的属性，目前已被废弃。请使用行内参数映射和 parameterType 属性。</td>
+</tr>
+<tr>
+<td style="text-align:left">flushCache</td>
+<td style="text-align:left">将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：（对 insert、update 和 delete 语句）true。</td>
+</tr>
+<tr>
+<td style="text-align:left">timeout</td>
+<td style="text-align:left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为未设置（unset）（依赖数据库驱动）。</td>
+</tr>
+<tr>
+<td style="text-align:left">statementType</td>
+<td style="text-align:left">可选 STATEMENT，PREPARED 或 CALLABLE。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
+</tr>
+<tr>
+<td style="text-align:left">useGeneratedKeys</td>
+<td style="text-align:left">（仅适用于 insert 和 update）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系型数据库管理系统的自动递增字段），默认值：false。</td>
+</tr>
+<tr>
+<td style="text-align:left">keyProperty</td>
+<td style="text-align:left">（仅适用于 insert 和 update）指定能够唯一识别对象的属性，MyBatis 会使用 getGeneratedKeys 的返回值或 insert 语句的 selectKey 子元素设置它的值，默认值：未设置（unset）。如果生成列不止一个，可以用逗号分隔多个属性名称。</td>
+</tr>
+<tr>
+<td style="text-align:left">keyColumn</td>
+<td style="text-align:left">（仅适用于 insert 和 update）设置生成键值在表中的列名，在某些数据库（像 PostgreSQL）中，当主键列不是表中的第一列的时候，是必须设置的。如果生成列不止一个，可以用逗号分隔多个属性名称。</td>
+</tr>
+<tr>
+<td style="text-align:left">databaseId</td>
+<td style="text-align:left">如果配置了数据库厂商标识（databaseIdProvider），MyBatis 会加载所有不带 databaseId 或匹配当前 databaseId 的语句；如果带和不带的语句都有，则不带的会被忽略。</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="29-update元素">2.9 <code>&lt;update&gt;</code>元素
+</h3><p>用来更新记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;updateUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;cn.programcx.POJO.user&#34;</span> <span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        UPDATE user SET name = #{name},email = #{email},password = #{password} WHERE userId = #{userId}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/update&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>属性和上面的<code>insert</code>一样。</p>
+<h3 id="210-delete元素">2.10 <code>&lt;delete&gt;</code>元素
+</h3><p>用来删除记录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;delete</span> <span class="na">id=</span><span class="s">&#34;deleteUser&#34;</span> <span class="nt">&gt;&lt;/delete&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        DELETE FROM user WHERE id=#{id}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/delete&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="211-selectkey元素">2.11 <code>&lt;selectKey&gt;</code>元素
+</h3><p>用来自定义生成一个属性的值。</p>
+<p>例如，插入用户为用户随机生成id并插入数据表：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;insertUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;cn.programcx.POJO.user&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;selectKey</span> <span class="na">keyProperty=</span><span class="s">&#34;userId&#34;</span> <span class="na">resultType=</span><span class="s">&#34;int&#34;</span> <span class="na">order=</span><span class="s">&#34;BEFORE&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     select CAST(RANDOM()*1000000 as INTEGER) a from SYSIBM.SYSDUMMY1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     <span class="nt">&lt;/selectKey&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        INSERT INTO user(userId,name,sex,email,phone,address,password)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        values (#{userId},#{name},#{sex},#{email},#{phone},#{address},#{password})
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/insert&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="211-resultmap元素">2.11 <code>&lt;resultMap&gt;</code>元素
+</h3><p><code>&lt;resultMap&gt;</code>的作用是自定义映射规则。如果数据表字段名称和POJO类中所需要映射到属性的名称不一致，就不能仅仅指定<code>parameterType</code>或<code>resultType</code>来实现映射，必须要通过自定义映射来实现。
+其基本格式是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;resultMap</span> <span class="na">type=</span><span class="s">&#34;[完整类名]&#34;</span> <span class="na">id=</span><span class="s">&#34;[标识这个自定义映射的字符串]&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;id</span> <span class="na">property=</span><span class="s">&#34;[POJO类中的属性名称]&#34;</span> <span class="na">column=</span><span class="s">&#34;[字段名称]&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;[POJO类中的属性名称]&#34;</span> <span class="na">column=</span><span class="s">&#34;[字段名称]&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/resultMap&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/mybatis-%E5%85%A5%E9%97%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mybatis-%E5%85%A5%E9%97%A8/MyBatis.9e418c71369dd216fbf85736f4b1b25f_huf530186ff050aabde73a47f8290c5d55_111513_250x150_fill_box_smart1_3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MyBatis 入门"
+                        
+                        data-hash="md5-nkGMcTad0hb7&#43;Fc29LGyXw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MyBatis 入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="ProgramCX/programcx.github.io"
+    data-repo-id="R_kgDOMtJx4g"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMtJx4s4CiWUj"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark_dimmed');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 ChengXu
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+
+        <div style="margin-top: 10px;">
+            <a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2024067408号-2</a>
+        </div>
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
