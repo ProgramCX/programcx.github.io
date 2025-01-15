@@ -22,7 +22,7 @@ jobs:
               extended: true # 如果需要扩展版支持（如 SCSS）
 
         - name: Build Web
-          run: hugo -D
+          run: hugo -D -F
 
         - name: Deploy Web
           uses: peaceiris/actions-gh-pages@v4
