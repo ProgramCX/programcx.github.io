@@ -16,10 +16,10 @@ jobs:
               fetch-depth: 0
 
         - name: Setup Hugo
-          uses: peaceiris/actions-hugo@v3
+          uses: peaceiris/actions-hugo@v2
           with:
-              hugo-version: "latest"
-              extended: true
+              hugo-version: '0.127.0' # 指定老版本的 Hugo
+              extended: true # 如果需要扩展版支持（如 SCSS）
 
         - name: Build Web
           run: hugo -D
