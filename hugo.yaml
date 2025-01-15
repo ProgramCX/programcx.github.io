@@ -16,7 +16,7 @@ hasCJKLanguage: true
 languages:
     zh-cn:
         languageName: 中文
-        title: 程旭的一天
+        title: 程旭的个人博客
         weight: 2
         params:
             description: 欢迎来到程旭的个人博客
@@ -48,7 +48,7 @@ params:
         lastUpdated: Jan 02, 2006 15:04 MST
 
     sidebar:
-        emoji: 🤩
+        emoji: 👨🏼‍💻
         subtitle: 人定胜天，而我逆天
         avatar:
             enabled: true

@@ -2,8 +2,7 @@
 title: MyBatis 入门
 description: MyBatis 的基本使用
 date: 2025-01-15
-image: MyBatis.jpg
-slug: MyBatis
+image: MyBatis.png
 categories:
     - MyBatis
 ---

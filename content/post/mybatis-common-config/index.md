@@ -1,9 +1,8 @@
 ---
 title: MyBatis 常用配置
-description: MyBatis 的常用配置
+description: MyBatis 的常用配置和核心对象
 date: 2025-01-16
-image: MyBatis.jpg
-slug: MyBatis
+image: MyBatis.png
 categories:
     - MyBatis
 ---
@@ -25,7 +24,7 @@ SqlSession 中提供了不同的查询方法。其中可以查询单个，也可
 ## 2. MyBatis 核心配置文件元素
 
 ### 2.2 `<properties>`元素
-用来存放数据库连接驱动类型、sql地址、用户名和密码。然后在`mybatis-cnfig.xml`里面引入、使用。
+用来存放数据库连接驱动类型、sql地址、用户名和密码。然后在`mybatis-config.xml`里面引入、使用。
 
 ### 2.3 `<typeAlias>`元素
 
@@ -70,7 +69,7 @@ SqlSession 中提供了不同的查询方法。其中可以查询单个，也可
 
          SELECT * FROM user WHERE id = #{id}
 
-    <select>
+    </select>
 
 ```
 
