@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
-        <lastBuildDate>Sat, 16 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MyBatis</title>
+        <link>https://programcx.github.io/categories/mybatis/</link>
+        <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/mybatis/</guid>
+        <description>&lt;img src="https://programcx.github.io/categories/mybatis/MyBatis.jpg" alt="Featured image of post MyBatis" /&gt;</description>
+        </item>
+        <item>
         <title>Java</title>
         <link>https://programcx.github.io/categories/java/</link>
         <pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate>
