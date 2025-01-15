@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on 程旭的一天</title>
+        <title>Categories on 程旭的个人博客</title>
         <link>https://programcx.github.io/categories/</link>
-        <description>Recent content in Categories on 程旭的一天</description>
+        <description>Recent content in Categories on 程旭的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
@@ -13,7 +13,7 @@
         <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
         
         <guid>https://programcx.github.io/categories/mybatis/</guid>
-        <description>&lt;img src="https://programcx.github.io/categories/mybatis/MyBatis.jpg" alt="Featured image of post MyBatis" /&gt;</description>
+        <description>&lt;img src="https://programcx.github.io/categories/mybatis/MyBatis.png" alt="Featured image of post MyBatis" /&gt;</description>
         </item>
         <item>
         <title>Java</title>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on 程旭的一天</title>
+        <title>Posts on 程旭的个人博客</title>
         <link>https://programcx.github.io/post/</link>
-        <description>Recent content in Posts on 程旭的一天</description>
+        <description>Recent content in Posts on 程旭的个人博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
         <lastBuildDate>Thu, 16 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>MyBatis 入门</title>
-        <link>https://programcx.github.io/p/mybatis/</link>
+        <link>https://programcx.github.io/p/mybatis-%E5%85%A5%E9%97%A8/</link>
         <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://programcx.github.io/p/mybatis/</guid>
-        <description>&lt;img src="https://programcx.github.io/p/mybatis/MyBatis.jpg" alt="Featured image of post MyBatis 入门" /&gt;&lt;h1 id=&#34;一环境搭建&#34;&gt;一、环境搭建
+        <guid>https://programcx.github.io/p/mybatis-%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://programcx.github.io/p/mybatis-%E5%85%A5%E9%97%A8/MyBatis.png" alt="Featured image of post MyBatis 入门" /&gt;&lt;h1 id=&#34;一环境搭建&#34;&gt;一、环境搭建
 &lt;/h1&gt;&lt;h2 id=&#34;依赖引入&#34;&gt;依赖引入
 &lt;/h2&gt;&lt;p&gt;在pom.xml文件中添加以下代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
