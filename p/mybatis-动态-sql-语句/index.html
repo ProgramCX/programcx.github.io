@@ -10,7 +10,7 @@
 <meta property='og:description' content="MyBatis 的 if，where，foreach 等元素的使用">
 <meta property='og:url' content='https://programcx.github.io/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/'>
 <meta property='og:site_name' content='程旭的个人博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-01-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-21T00:00:00&#43;00:00'/><meta property='og:image' content='https://programcx.github.io/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/MyBatis.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-01-22T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-22T00:00:00&#43;00:00'/><meta property='og:image' content='https://programcx.github.io/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/MyBatis.png' />
 <meta name="twitter:title" content="MyBatis 动态 SQL 语句">
 <meta name="twitter:description" content="MyBatis 的 if，where，foreach 等元素的使用"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://programcx.github.io/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/MyBatis.png' />
@@ -279,6 +279,16 @@
         </li>
       </ol>
     </li>
+    <li><a href="#实践学生信息查询系统">实践：学生信息查询系统</a>
+      <ol>
+        <li><a href="#第一步数据库数据准备">第一步：数据库数据准备</a></li>
+        <li><a href="#第二步创建-pojo-类">第二步：创建 POJO 类</a></li>
+        <li><a href="#第三步mapper-映射文件配置">第三步：Mapper 映射文件配置</a></li>
+        <li><a href="#第四步配置-mybatis-配置文件">第四步：配置 MyBatis 配置文件</a></li>
+        <li><a href="#第五步创建测试类">第五步：创建测试类</a></li>
+        <li><a href="#第五步查看运行结果">第五步：查看运行结果😆</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -344,7 +354,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Jan 21, 2025</time>
+                <time class="article-time--published">Jan 22, 2025</time>
             </div>
         
 
@@ -359,7 +369,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -471,45 +481,45 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">org.example.pojo</span><span class="p">;</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">phone</span><span class="p">;</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getId</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setId</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getAddress</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setAddress</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getPhone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">phone</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPhone</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">phone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">phone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phone</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Customer{&#34;</span><span class="w"> </span><span class="o">+</span><span class="w">  
@@ -559,7 +569,7 @@
 </span></span><span class="line"><span class="cl">            and phone=#{phone}  
 </span></span><span class="line"><span class="cl">        <span class="nt">&lt;/if&gt;</span>  
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>  
-</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -620,7 +630,7 @@
 </span></span><span class="line"><span class="cl">        <span class="nt">&lt;/environment&gt;</span>    
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/environments&gt;</span>    
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;mappers&gt;</span>       
-</span></span><span class="line"><span class="cl">	    <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/UserMapper.xml&#34;</span><span class="nt">/&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/UserMapper.xml&#34;</span><span class="nt">/&gt;</span>  
 </span></span><span class="line"><span class="cl">        <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/CustomMapper.xml&#34;</span><span class="nt">/&gt;</span>  
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/mappers&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
@@ -663,32 +673,32 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">Test</span><span class="p">;</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.io.Resources</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSession</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Test</span><span class="p">;</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Reader</span><span class="p">;</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.example.pojo.Customer</span><span class="p">;</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerTest</span><span class="w"> </span><span class="p">{</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//初始化配置  </span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Reader</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="na">getResourceAsReader</span><span class="p">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="p">);</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SqlSessionFactory</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqlSessionFactoryBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">(</span><span class="n">read</span><span class="p">);</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">sqlSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="p">.</span><span class="na">openSession</span><span class="p">();</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//创建POJO类的实例  </span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Customer</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Customer</span><span class="p">();</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">customer</span><span class="p">.</span><span class="na">setId</span><span class="p">(</span><span class="n">1</span><span class="p">);</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">customer</span><span class="p">.</span><span class="na">setAddress</span><span class="p">(</span><span class="s">&#34;AUST&#34;</span><span class="p">);</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">customer</span><span class="p">.</span><span class="na">setPhone</span><span class="p">(</span><span class="s">&#34;666666666666&#34;</span><span class="p">);</span><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">customer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlSession</span><span class="p">.</span><span class="na">selectOne</span><span class="p">(</span><span class="s">&#34;queryCustomerByNameAndAddress&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">customer</span><span class="p">);</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">customer</span><span class="p">);</span><span class="w">  
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
@@ -770,21 +780,21 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;choose&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">		<span class="c">&lt;!--SQL 语句--&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/when&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">		<span class="c">&lt;!--SQL 语句--&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/when&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">		<span class="c">&lt;!--SQL 语句--&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/when&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">		<span class="c">&lt;!--SQL 语句--&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/when&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;otherwise&gt;</span>
-</span></span><span class="line"><span class="cl">		<span class="c">&lt;!--SQL 语句--&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/otherwise&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--SQL 语句--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/when&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--SQL 语句--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/when&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--SQL 语句--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/when&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--SQL 语句--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/when&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;otherwise&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!--SQL 语句--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/otherwise&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/choose&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -818,12 +828,12 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">update ...
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;set&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">		...
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/if&gt;</span>
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">		...
-</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;...&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/if&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/set&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -873,8 +883,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">	</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">1</span><span class="p">,</span><span class="n">2</span><span class="p">,</span><span class="n">3</span><span class="o">]</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">findUsersByIds</span><span class="p">(</span><span class="n">ids</span><span class="p">);</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">1</span><span class="p">,</span><span class="n">2</span><span class="p">,</span><span class="n">3</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">findUsersByIds</span><span class="p">(</span><span class="n">ids</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>会生成下列语句：</p>
@@ -1021,7 +1031,570 @@
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;Alice&#34;</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="实践学生信息查询系统">实践：学生信息查询系统
+</h2><p><strong>利用本章属于知识完成一个学生信息查询系统。该系统要求实现以下三个功能：</strong></p>
+<ul>
+<li>当用户输入的学生姓名不为空时，则只根据学生姓名进行学生信息的查询。</li>
+<li>当用户输入的学生姓名为空，而学生专业为空时，则指根据学生专业进行学生信息的查询。</li>
+<li>当用户输入的学生姓名和专业都为空，则要求查询出所有学号不为空的学生信息。</li>
+</ul>
+<h3 id="第一步数据库数据准备">第一步：数据库数据准备
+</h3><p>登录 MySQL 终端，输入以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">use</span><span class="w"> </span><span class="n">mall</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">学生姓名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">major</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">专业</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">auto_increment</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">学生编号</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">idx_student_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">为学生编号创建索引</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">插入数据</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;zhangsan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;computer&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;lisi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;mathematics&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;wangwu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;physics&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;zhaoliu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;chemistry&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;sunqi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;biology&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;zhouba&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;engineering&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;wujiu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;literature&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;zhengshi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;history&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;liuyi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;philosophy&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;qibai&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;art&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;bajiu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;music&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shiyi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;economics&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shier&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;political science&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shisan&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sociology&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shisi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;psychology&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shiwu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;law&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shiliu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;medicine&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shiqi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;nursing&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shiba&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;education&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;shijiu&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;business&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">major</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;ershi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;architecture&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
+</div><p><img src="/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/select_dy_sql.png"
+	width="658"
+	height="910"
+	srcset="/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/select_dy_sql_hud0953c5deabca5c2c6d5cca3b112d429_68204_480x0_resize_box_3.png 480w, /p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/select_dy_sql_hud0953c5deabca5c2c6d5cca3b112d429_68204_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="查询结果"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="72"
+		data-flex-basis="173px"
+	
+></p>
+<h3 id="第二步创建-pojo-类">第二步：创建 POJO 类
+</h3><p>在<code>org.example.pojo</code>包下新建一个<code>Student.java</code>文件，创建 POJO 类 Student</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">Test</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.io.Resources</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSession</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.example.pojo.Student</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Test</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Reader</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StudentTest</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">sqlSession</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test1</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">student</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&#34;zhangsan&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">session</span><span class="o">=</span><span class="n">getSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="o">=</span><span class="n">session</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="s">&#34;findStudent&#34;</span><span class="p">,</span><span class="n">student</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="n">list</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test2</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">student</span><span class="p">.</span><span class="na">setMajor</span><span class="p">(</span><span class="s">&#34;economics&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">session</span><span class="o">=</span><span class="n">getSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="o">=</span><span class="n">session</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="s">&#34;findStudent&#34;</span><span class="p">,</span><span class="n">student</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="n">list</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test3</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">sqlSession</span><span class="o">=</span><span class="n">getSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="o">=</span><span class="n">sqlSession</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="s">&#34;findStudent&#34;</span><span class="p">,</span><span class="n">student</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="n">list</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SqlSession</span><span class="w"> </span><span class="nf">getSession</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">sqlSession</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Reader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="na">getResourceAsReader</span><span class="p">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">SqlSessionFactory</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqlSessionFactoryBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">sqlSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="p">.</span><span class="na">openSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sqlSession</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="第三步mapper-映射文件配置">第三步：Mapper 映射文件配置
+</h3><p>创建 StudentMapper，创建映射关系和查询条件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;  
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;org.example.pojo.Student&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;findStudent&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;org.example.pojo.Student&#34;</span> <span class="na">resultType=</span><span class="s">&#34;org.example.pojo.Student&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">        select * from student  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;where&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--当用户输入的学生姓名不为空时，则只根据学生姓名进行学生信息的查询。--&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;name!=null and name!=&#39;&#39;&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">                name=#{name}  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/if&gt;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--当用户输入的学生姓名为空，而学生专业为空时，则指根据学生专业进行学生信息的查询。--&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;(name==null or name==&#39;&#39;) and (major!=&#39;&#39; and major!=null)&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">                major=#{major}  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/if&gt;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c">&lt;!--当用户输入的学生姓名和专业都为空，则要求查询出所有学号不为空的学生信息。--&gt;</span>  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;(name==null or name==&#39;&#39;) and (major==&#39;&#39; or major==null)&#34;</span><span class="nt">&gt;</span>  
+</span></span><span class="line"><span class="cl">                id!=0  
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;/if&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/where&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/select&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mapper&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="第四步配置-mybatis-配置文件">第四步：配置 MyBatis 配置文件
+</h3><p>在mybatis-config.xml 里，把 StudentMapper.xml 文件包含进去：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/StudentMapper.xml&#34;</span><span class="nt">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="第五步创建测试类">第五步：创建测试类
+</h3><p>在 test/java/Test 目录下创建 StudentTest.java 文件，添加以下测试方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">Test</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.io.Resources</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSession</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.example.pojo.Student</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Test</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Reader</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StudentTest</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">sqlSession</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//当用户输入的学生姓名不为空时，则只根据学生姓名进行学生信息的查询。  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test1</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">student</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&#34;zhangsan&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">session</span><span class="o">=</span><span class="n">getSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="o">=</span><span class="n">session</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="s">&#34;findStudent&#34;</span><span class="p">,</span><span class="n">student</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="n">list</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//当用户输入的学生姓名为空，而学生专业为空时，则指根据学生专业进行学生信息的查询。  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test2</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">student</span><span class="p">.</span><span class="na">setMajor</span><span class="p">(</span><span class="s">&#34;economics&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SqlSession</span><span class="w"> </span><span class="n">session</span><span class="o">=</span><span class="n">getSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="o">=</span><span class="n">session</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="s">&#34;findStudent&#34;</span><span class="p">,</span><span class="n">student</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="n">list</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Test</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//当用户输入的学生姓名和专业都为空，则要求查询出所有学号不为空的学生信息。  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test3</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Student</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">sqlSession</span><span class="o">=</span><span class="n">getSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="o">=</span><span class="n">sqlSession</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="s">&#34;findStudent&#34;</span><span class="p">,</span><span class="n">student</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">:</span><span class="n">list</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SqlSession</span><span class="w"> </span><span class="nf">getSession</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">sqlSession</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Reader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Resources</span><span class="p">.</span><span class="na">getResourceAsReader</span><span class="p">(</span><span class="s">&#34;mybatis-config.xml&#34;</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">SqlSessionFactory</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqlSessionFactoryBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">sqlSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="p">.</span><span class="na">openSession</span><span class="p">();</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sqlSession</span><span class="p">;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="第五步查看运行结果">第五步：查看运行结果😆
+</h3><p><img src="/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/result_dy_sql.png"
+	width="1264"
+	height="232"
+	srcset="/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/result_dy_sql_hudd237ef4332c152fc4d67ad99e612008_20434_480x0_resize_box_3.png 480w, /p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/result_dy_sql_hudd237ef4332c152fc4d67ad99e612008_20434_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="运行结果"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="544"
+		data-flex-basis="1307px"
+	
+></p>
+<p><strong>成功了，这一章学习圆满结束！🎆🎆</strong></p>
+<p>输出结果如下：</p>
+<ul>
+<li>
+<p><strong>test1：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Student [name=zhangsan, major=computer, id=1]
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>test2：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Student [name=shiyi, major=economics, id=12]
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>test3：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Student [name=zhangsan, major=computer, id=1]
+</span></span><span class="line"><span class="cl">Student [name=lisi, major=mathematics, id=2]
+</span></span><span class="line"><span class="cl">Student [name=wangwu, major=physics, id=3]
+</span></span><span class="line"><span class="cl">Student [name=zhaoliu, major=chemistry, id=4]
+</span></span><span class="line"><span class="cl">Student [name=sunqi, major=biology, id=5]
+</span></span><span class="line"><span class="cl">Student [name=zhouba, major=engineering, id=6]
+</span></span><span class="line"><span class="cl">Student [name=wujiu, major=literature, id=7]
+</span></span><span class="line"><span class="cl">Student [name=zhengshi, major=history, id=8]
+</span></span><span class="line"><span class="cl">Student [name=liuyi, major=philosophy, id=9]
+</span></span><span class="line"><span class="cl">Student [name=qibai, major=art, id=10]
+</span></span><span class="line"><span class="cl">Student [name=bajiu, major=music, id=11]
+</span></span><span class="line"><span class="cl">Student [name=shiyi, major=economics, id=12]
+</span></span><span class="line"><span class="cl">Student [name=shier, major=political science, id=13]
+</span></span><span class="line"><span class="cl">Student [name=shisan, major=sociology, id=14]
+</span></span><span class="line"><span class="cl">Student [name=shisi, major=psychology, id=15]
+</span></span><span class="line"><span class="cl">Student [name=shiwu, major=law, id=16]
+</span></span><span class="line"><span class="cl">Student [name=shiliu, major=medicine, id=17]
+</span></span><span class="line"><span class="cl">Student [name=shiqi, major=nursing, id=18]
+</span></span><span class="line"><span class="cl">Student [name=shiba, major=education, id=19]
+</span></span><span class="line"><span class="cl">Student [name=shijiu, major=business, id=20]
+</span></span><span class="line"><span class="cl">Student [name=ershi, major=architecture, id=21]
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
 </section>
 
 
