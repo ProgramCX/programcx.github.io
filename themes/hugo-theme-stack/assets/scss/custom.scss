@@ -1,1 +1,31 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+
+body {
+    background-image: url("https://www.liveout.cn/wp-content/uploads/2024/09/0503.png");
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+  
+  body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 白色模式下的样式 */
+    background: var(--html-bg);/* 黑色半透明 */
+    backdrop-filter: blur(2px); /* 毛玻璃效果 */
+    z-index: -1;
+    // transition: background 0.3s ease, backdrop-filter 0.3s ease; /* 平滑过渡效果 */
+  }
+  
+  .has-image{
+    opacity: 0.8;
+  }
+//   /* 暗色模式下的样式 */
+//   body.dark-mode::after {
+//     background: rgba(158, 157, 157, 0.5); /* 更强的黑色半透明毛玻璃效果 */
+//   }
