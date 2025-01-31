@@ -176,11 +176,14 @@ tr{
     width: 100% !important;
 }
 
-article:hover {
-    box-shadow: var(--shadow-l4);
-    transform: scale(1.02) ;
-    transition: transform 5s ease;
-}
-article {
-    transform: scale(1);
+.article-list{
+    article:hover {
+        box-shadow: var(--shadow-l4);
+        transform: scale(1.02) ;
+        transition: all 0.3s ease;
+    }
+    article {
+        transform: scale(1);
+    }
+    
 }
