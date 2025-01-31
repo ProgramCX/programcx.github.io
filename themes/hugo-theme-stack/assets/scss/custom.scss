@@ -1,12 +1,12 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
 
 body {
-    background-image: url("https://www.liveout.cn/wp-content/uploads/2024/09/0503.png");
+    background-image: var(--html-bg-image);
     background-size: cover;
     background-attachment: fixed;
     position: relative;
     transition: background-color 0.3s ease;
-  }
+}
   
   body::after {
     content: '';

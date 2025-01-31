@@ -24,7 +24,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 
     --scrollbar-thumb: hsl(0, 0%, 85%);
     --scrollbar-track: var(--body-background);
-
+    --html-bg-image: url("https://assets.programcx.cn/0503.png");
     &[data-scheme="dark"] {
         --body-background: #303030;
         --accent-color: #ecf0f1;
@@ -33,6 +33,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
         --body-text-color: rgba(255, 255, 255, 0.7);
         --scrollbar-thumb: hsl(0, 0%, 40%);
         --scrollbar-track: var(--body-background);
+        --html-bg-image: url("https://assets.programcx.cn/0504.jpg");
     }
 }
 
