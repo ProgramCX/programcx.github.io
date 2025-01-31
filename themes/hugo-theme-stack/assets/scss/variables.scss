@@ -107,7 +107,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 */
 :root {
     --blockquote-border-size: 4px;
-    --blockquote-background-color: rgb(248 248 248,0.9);
+    --blockquote-background-color: rgb(248 248 248,0.8);
 
     --heading-border-size: 4px;
 
@@ -134,7 +134,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
         --table-border-color: #717171;
         --tr-even-background-color: #545454;
 
-        --blockquote-background-color: rgb(75 75 75);
+        --blockquote-background-color: rgb(75 75 75,0.8);
         --html-bg: rgba(158, 157, 157, 0.5);
     }
 }
