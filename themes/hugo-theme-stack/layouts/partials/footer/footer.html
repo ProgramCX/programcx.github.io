@@ -1,73 +1,154 @@
 {{- $ThemeVersion := "3.26.0" -}}
+<!-- APlayer 资源 -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
-            {{ .Site.Params.footer.since }} - 
-        {{ end }}
-        {{ now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}
-    </section>
-    
-    <section class="powerby">
-        {{ with .Site.Params.footer.customText }}
-            {{ . | safeHTML }} <br/>
-        {{ end }}
+  <section class="copyright">
+    &copy; {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since
+    (int (now.Format "2006"))) }} {{ .Site.Params.footer.since }} - {{ end }} {{
+    now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}
+  </section>
 
-        {{- $Generator := `<a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>` -}}
-        {{- $Theme := printf `<b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="%s">Stack</a></b>` $ThemeVersion -}}
-        {{- $DesignedBy := `<a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>` -}}
-        
-        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} <br />
-        {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) | safeHTML }}
+  <section class="powerby">
+    {{ with .Site.Params.footer.customText }} {{ . | safeHTML }} <br />
+    {{ end }} {{- $Generator := `<a
+      href="https://gohugo.io/"
+      target="_blank"
+      rel="noopener"
+      >Hugo</a
+    >` -}} {{- $Theme := printf `<b
+      ><a
+        href="https://github.com/CaiJimmy/hugo-theme-stack"
+        target="_blank"
+        rel="noopener"
+        data-version="%s"
+        >Stack</a
+      ></b
+    >` $ThemeVersion -}} {{- $DesignedBy := `<a
+      href="https://jimmycai.com"
+      target="_blank"
+      rel="noopener"
+      >Jimmy</a
+    >` -}} {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }}
+    <br />
+    {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) |
+    safeHTML }}
 
-        <div style="margin-top: 10px;">
-            <a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2024067408号-2</a>
-        </div>
-        <!-- <span id="regist"><img src="https://www.helloimg.com/i/2024/12/13/675b15fd2821b.png" height="13px" style="margin-right: 5px;vertical-align:middle"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=34118102000926" rel="noreferrer" target="_blank">皖公网安备34118102000926</a></span> -->
-    </section>
+    <div style="margin-top: 10px">
+      <a href="https://beian.miit.gov.cn/" target="_blank"
+        >皖ICP备2024067408号-2</a
+      >
+    </div>
+    <div id="aplayer" class="aplayer"></div>
+    <!-- <span id="regist"><img src="https://www.helloimg.com/i/2024/12/13/675b15fd2821b.png" height="13px" style="margin-right: 5px;vertical-align:middle"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=34118102000926" rel="noreferrer" target="_blank">皖公网安备34118102000926</a></span> -->
+  </section>
 </footer>
+
 <!-- Live2D，网页上的小人，可以修改live2d_config.js来修改模型，模型都在static/live2d_models里面 -->
 <!-- 你也可以把js文件下载下来，放到static/js/目录下，就不依赖别人的服务了 -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"
+></script>
 
 <script type="text/javascript">
-    L2Dwidget.init({
-        model: {
-            scale: 1,
-            hHeadPos: 0.5,
-            vHeadPos: 0.618,
-            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json',       // xxx.model.json 的路径,换人物修改这个
-        },
-        display: {
-            superSample: 1,     // 超采样等级
-            width: 120,         // canvas的宽度
-            height: 300,        // canvas的高度
-            position: 'right',   // 显示位置：左或右
-            hOffset: 0,         // canvas水平偏移
-            vOffset: 0,         // canvas垂直偏移
-        },
-        mobile: {
-            show: true,         // 是否在移动设备上显示
-            scale: 1,           // 移动设备上的缩放
-            motion: true,       // 移动设备是否开启重力感应
-        },
-        react: {
-            opacityDefault: 1,  // 默认透明度
-            opacityOnHover: 1,  // 鼠标移上透明度
-        },
-        // 添加点击反馈功能
-        interaction: {
-            click: {
-                enable: true,
-                message: [
-                    "你戳我干嘛？",
-                    "别戳我啦，好痒！",
-                    "再戳我就生气啦！"
-                ]
-            }
-        }
-        
-     });
+  L2Dwidget.init({
+    model: {
+      scale: 1,
+      hHeadPos: 0.5,
+      vHeadPos: 0.618,
+      jsonPath:
+        "https://cdn.jsdelivr.net/npm/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json", // xxx.model.json 的路径,换人物修改这个
+    },
+    display: {
+      superSample: 1, // 超采样等级
+      width: 120, // canvas的宽度
+      height: 300, // canvas的高度
+      position: "right", // 显示位置：左或右
+      hOffset: 0, // canvas水平偏移
+      vOffset: 0, // canvas垂直偏移
+    },
+    mobile: {
+      show: true, // 是否在移动设备上显示
+      scale: 1, // 移动设备上的缩放
+      motion: true, // 移动设备是否开启重力感应
+    },
+    react: {
+      opacityDefault: 1, // 默认透明度
+      opacityOnHover: 1, // 鼠标移上透明度
+    },
+    // 添加点击反馈功能
+    interaction: {
+      click: {
+        enable: true,
+        message: ["你戳我干嘛？", "别戳我啦，好痒！", "再戳我就生气啦！"],
+      },
+    },
+  });
 </script>
 
+<script>
+  const ap = new APlayer({
+    container: document.getElementById("aplayer"),
+    fixed: true, // 悬浮模式
+    autoplay: true,
+    theme: "#FADFA3",
+    loop: "all",
+    order: "list",
+    preload: true,
+    volume: 0.7,
+    mutex: true,
+    listFolded: false,
+    showlrc: true,
+    listMaxHeight: "300px",
+    lrcType: 3,
+    theme: "#00A2E8",
+    audio: [
+      {
+        name: "心同此愿",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/xtcy.mp3", // 你的音乐文件路径
+        cover: "http://assets.programcx.cn/music-blog/image/xtcy.jpg",
+        lrc: "lrc/xtcy.lrc",
+      },
+      {
+        name: "璀璨冒险人",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/ccmxr.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/ccmxr.webp",
+        lrc: "lrc/ccmxr.lrc",
+      },
+      {
+        name: "敬时光",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/jsg.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/jsg.webp",
+        lrc: "lrc/jsg.lrc",
+      },
+      {
+        name: "有我",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/yw.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/yw.webp",
+        lrc: "/lrc/yw.lrc",
+      },
+      {
+        name: "总有美好在路上",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/zymhzls.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/zymhzls.jpg",
+        lrc: "/lrc/zymhzls.lrc",
+      },
+      {
+        name: "亲爱的旅人啊",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/qadlra.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/qadlra.webp",
+        lrc: "/lrc/qadlra.lrc",
+      },
+    ],
+  });
+</script>

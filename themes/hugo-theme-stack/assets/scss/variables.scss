@@ -24,6 +24,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 
     --scrollbar-thumb: hsl(0, 0%, 85%);
     --scrollbar-track: var(--body-background);
+    --icon-fill-color: #666;
     --html-bg-image: url("https://assets.programcx.cn/0503.png");
     &[data-scheme="dark"] {
         --body-background: #303030;
@@ -33,6 +34,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
         --body-text-color: rgba(255, 255, 255, 0.7);
         --scrollbar-thumb: hsl(0, 0%, 40%);
         --scrollbar-track: var(--body-background);
+        --icon-fill-color: #999;
         --html-bg-image: url("https://assets.programcx.cn/0504.jpg");
     }
 }
@@ -79,7 +81,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     }
 
     &[data-scheme="dark"] {
-        --card-background: rgba(0, 0, 0, 0.4);
+        --card-background: rgba(0, 0, 0, 0.6);
         --card-background-selected: rgba(255, 255, 255, 0.16);
         --card-text-color-main: rgba(255, 255, 255, 0.9);
         --card-text-color-secondary: rgba(255, 255, 255, 0.7);
