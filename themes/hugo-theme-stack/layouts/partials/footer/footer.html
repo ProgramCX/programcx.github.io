@@ -21,6 +21,8 @@
 
         <div style="margin-top: 10px">
             <a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2024067408号-2</a>
+            <br/>
+            <b id="total">访问次数统计：0次</b>
         </div>
         <div id="aplayer" class="aplayer"></div>
         <!-- <span id="regist"><img src="https://www.helloimg.com/i/2024/12/13/675b15fd2821b.png" height="13px" style="margin-right: 5px;vertical-align:middle"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=34118102000926" rel="noreferrer" target="_blank">皖公网安备34118102000926</a></span> -->
@@ -152,4 +154,31 @@
             ap.play(); // 恢复播放
         }
     }
+</script>
+<script>
+    fetch("/api/site/add-count?name=www", {
+        method: "POST",
+        mode: 'cors',
+    })
+    // 访问次数统计
+    var total = document.getElementById("total");
+    var count = 0;
+    fetch("/api/site/get-count?name=www", {
+    method: "GET",
+    mode: 'cors',
+    headers: {
+        "Content-Type": "application/json",
+    }
+})
+    .then((res) => res.json())  // 解析响应体为JSON
+    .then((data) => {
+        console.log(data);  // 打印解析后的数据
+        // 假设你的响应包含 count 字段
+        const count = data.total_visited;
+        total.innerText = "访问次数统计：" + count + "次";
+    })
+    .catch((error) => {
+        console.error('Error:', error);  // 错误处理
+    });
+
 </script>
