@@ -2,7 +2,7 @@ baseurl: https://programcx.github.io
 languageCode: zh-cn
 theme: hugo-theme-stack
 paginate: 3
-title: 程旭的一天
+title: 程旭的小窝
 copyright: ChengXu
 
 # Theme i18n support
@@ -16,10 +16,10 @@ hasCJKLanguage: true
 languages:
     zh-cn:
         languageName: 中文
-        title: 程旭的个人博客
+        title: 程旭的小窝
         weight: 2
         params:
-            description: 欢迎来到程旭的个人博客
+            description: 欢迎来到程旭的小窝
 services:
     # Change it to your Disqus shortname before using
     disqus:
