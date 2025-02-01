@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/scss/style.min.9c457da72729da45982849dfa4f7216c802fb65c98e54c26624a704643ffd681.css"><meta property='og:title' content="关于">
 <meta property='og:description' content="Hi there 👋 个人信息 真实姓名：程旭 生日：2005/11/20 年龄：自己算 身份：Auster 国籍：中华人民共和国 兴趣爱好 乒乓球 编程 瞎装系统 事迹与项目">
 <meta property='og:url' content='https://programcx.github.io/%E5%85%B3%E4%BA%8E/'>
-<meta property='og:site_name' content='程旭的个人博客'>
+<meta property='og:site_name' content='程旭的小窝'>
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="关于">
 <meta name="twitter:description" content="Hi there 👋 个人信息 真实姓名：程旭 生日：2005/11/20 年龄：自己算 身份：Auster 国籍：中华人民共和国 兴趣爱好 乒乓球 编程 瞎装系统 事迹与项目">
@@ -72,7 +72,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">程旭的个人博客</a></h1>
+            <h1 class="site-name"><a href="/">程旭的小窝</a></h1>
             <h2 class="site-description">人定胜天，而我逆天</h2>
         </div>
     </header><ol class="menu-social">
@@ -526,7 +526,7 @@ Here are some ideas to get you started:
         container: document.getElementById("aplayer"),
         fixed: true, 
         autoplay: true,
-        theme: "#FADFA3",
+        theme: "#00A2E8", 
         loop: "all",
         order: "list",
         preload: true,
@@ -536,56 +536,77 @@ Here are some ideas to get you started:
         showlrc: true,
         listMaxHeight: "300px",
         lrcType: 3,
-        theme: "#00A2E8",
         audio: [
             {
                 name: "心同此愿",
                 artist: "周深",
                 url: "https://assets.programcx.cn/music-blog/xtcy.mp3", 
                 cover: "http://assets.programcx.cn/music-blog/image/xtcy.jpg",
-                lrc: window.location.origin+"/lrc/xtcy.lrc", 
+                lrc: window.location.origin + "/lrc/xtcy.lrc", 
             },
             {
                 name: "璀璨冒险人",
                 artist: "周深",
                 url: "https://assets.programcx.cn/music-blog/ccmxr.mp3",
                 cover: "https://assets.programcx.cn/music-blog/image/ccmxr.webp",
-                lrc: window.location.origin+"/lrc/ccmxr.lrc", 
+                lrc: window.location.origin + "/lrc/ccmxr.lrc", 
             },
             {
                 name: "敬时光",
                 artist: "周深",
                 url: "https://assets.programcx.cn/music-blog/jsg.mp3",
                 cover: "https://assets.programcx.cn/music-blog/image/jsg.webp",
-                lrc: window.location.origin+"/lrc/jsg.lrc", 
+                lrc: window.location.origin + "/lrc/jsg.lrc", 
             },
             {
                 name: "有我",
                 artist: "周深",
                 url: "https://assets.programcx.cn/music-blog/yw.mp3",
                 cover: "https://assets.programcx.cn/music-blog/image/yw.webp",
-                lrc: window.location.origin+"/lrc/yw.lrc", 
+                lrc: window.location.origin + "/lrc/yw.lrc", 
             },
             {
                 name: "总有美好在路上",
                 artist: "周深",
                 url: "https://assets.programcx.cn/music-blog/zymhzls.mp3",
                 cover: "https://assets.programcx.cn/music-blog/image/zymhzls.jpg",
-                lrc: window.location.origin+"/lrc/zymhzls.lrc", 
+                lrc: window.location.origin + "/lrc/zymhzls.lrc", 
             },
             {
                 name: "亲爱的旅人啊",
                 artist: "周深",
                 url: "https://assets.programcx.cn/music-blog/qadlra.mp3",
                 cover: "https://assets.programcx.cn/music-blog/image/qadlra.webp",
-                lrc: window.location.origin+"/lrc/qadlra.lrc", 
+                lrc: window.location.origin + "/lrc/qadlra.lrc", 
             },
-        ]
-
-
-
+        ],
+        audioIndex: localStorage.getItem('audioIndex') ? parseInt(localStorage.getItem('audioIndex')) : 0, 
+        volume: localStorage.getItem('volume') ? parseFloat(localStorage.getItem('volume')) : 0.7, 
     });
+
+    
+    ap.on('play', function () {
+        localStorage.setItem('audioIndex', ap.list.index); 
+    });
+
+    
+    ap.on('volumechange', function (volume) {
+        localStorage.setItem('volume', volume); 
+    });
+
+    ap.on('timeupdate', function () {
+        localStorage.setItem('currentTime', ap.audio.currentTime); 
+    });
+
+    
+    window.onload = function () {
+        if (localStorage.getItem('currentTime')) {
+            ap.audio.currentTime = parseFloat(localStorage.getItem('currentTime')); 
+            ap.play(); 
+        }
+    }
 </script>
+
 
     
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
