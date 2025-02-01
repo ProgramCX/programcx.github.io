@@ -821,6 +821,8 @@
 
         <div style="margin-top: 10px">
             <a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2024067408号-2</a>
+            <br/>
+            <b id="total">访问次数统计：0次</b>
         </div>
         <div id="aplayer" class="aplayer"></div>
         
@@ -952,6 +954,33 @@
             ap.play(); 
         }
     }
+</script>
+<script>
+    fetch("/api/site/add-count?name=www", {
+        method: "POST",
+        mode: 'cors',
+    })
+    
+    var total = document.getElementById("total");
+    var count = 0;
+    fetch("/api/site/get-count?name=www", {
+    method: "GET",
+    mode: 'cors',
+    headers: {
+        "Content-Type": "application/json",
+    }
+})
+    .then((res) => res.json())  
+    .then((data) => {
+        console.log(data);  
+        
+        const count = data.total_visited;
+        total.innerText = "访问次数统计：" + count + "次";
+    })
+    .catch((error) => {
+        console.error('Error:', error);  
+    });
+
 </script>
 
 
