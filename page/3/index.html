@@ -653,179 +653,478 @@
 
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <footer class="site-footer">
-    <section class="copyright">
-        &copy;  2024 -  2025 ChengXu
-    </section>
+  <section class="copyright">
+    &copy;  2024 -  2025 ChengXu
+  </section>
 
-    <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建
-        <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
-                data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com"
-            target="_blank" rel="noopener">Jimmy</a> 设计
+  <section class="powerby">
+    使用 <a
+      href="https://gohugo.io/"
+      target="_blank"
+      rel="noopener"
+      >Hugo</a
+    > 构建
+    <br />
+    主题 <b
+      ><a
+        href="https://github.com/CaiJimmy/hugo-theme-stack"
+        target="_blank"
+        rel="noopener"
+        data-version="3.26.0"
+        >Stack</a
+      ></b
+    > 由 <a
+      href="https://jimmycai.com"
+      target="_blank"
+      rel="noopener"
+      >Jimmy</a
+    > 设计
 
-        <div style="margin-top: 10px">
-            <a href="https://beian.miit.gov.cn/" target="_blank">皖ICP备2024067408号-2</a>
-            <br/>
-            <b id="total">访问次数统计：0次</b>
-        </div>
-        <div id="aplayer" class="aplayer"></div>
-        
-    </section>
+    <div style="margin-top: 10px">
+      <a href="https://beian.miit.gov.cn/" target="_blank"
+        >皖ICP备2024067408号-2</a
+      >
+      <br />
+      <b id="total">访问次数统计：0次</b>
+    </div>
+    <div id="aplayer" class="aplayer"></div>
+    
+  </section>
 </footer>
 
 
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"
+></script>
 
 <script type="text/javascript">
-    L2Dwidget.init({
-        model: {
-            scale: 1,
-            hHeadPos: 0.5,
-            vHeadPos: 0.618,
-            jsonPath:
-                "https://cdn.jsdelivr.net/npm/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json", 
-        },
-        display: {
-            superSample: 1, 
-            width: 120, 
-            height: 300, 
-            position: "right", 
-            hOffset: 0, 
-            vOffset: 0, 
-        },
-        mobile: {
-            show: true, 
-            scale: 1, 
-            motion: true, 
-        },
-        react: {
-            opacityDefault: 1, 
-            opacityOnHover: 1, 
-        },
-        
-        interaction: {
-            click: {
-                enable: true,
-                message: ["你戳我干嘛？", "别戳我啦，好痒！", "再戳我就生气啦！"],
-            },
-        },
-    });
+  L2Dwidget.init({
+    model: {
+      scale: 1,
+      hHeadPos: 0.5,
+      vHeadPos: 0.618,
+      jsonPath:
+        "https://cdn.jsdelivr.net/npm/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json", 
+    },
+    display: {
+      superSample: 1, 
+      width: 120, 
+      height: 300, 
+      position: "right", 
+      hOffset: 0, 
+      vOffset: 0, 
+    },
+    mobile: {
+      show: true, 
+      scale: 1, 
+      motion: true, 
+    },
+    react: {
+      opacityDefault: 1, 
+      opacityOnHover: 1, 
+    },
+    
+    interaction: {
+      click: {
+        enable: true,
+        message: ["你戳我干嘛？", "别戳我啦，好痒！", "再戳我就生气啦！"],
+      },
+    },
+  });
 </script>
 
 <script>
-    const ap = new APlayer({
-        container: document.getElementById("aplayer"),
-        fixed: true, 
-        autoplay: true,
-        theme: "#00A2E8", 
-        loop: "all",
-        order: "list",
-        preload: true,
-        volume: 0.7,
-        mutex: true,
-        listFolded: false,
-        showlrc: true,
-        listMaxHeight: "300px",
-        lrcType: 3,
-        audio: [
-            {
-                name: "心同此愿",
-                artist: "周深",
-                url: "https://assets.programcx.cn/music-blog/xtcy.mp3", 
-                cover: "http://assets.programcx.cn/music-blog/image/xtcy.jpg",
-                lrc: window.location.origin + "/lrc/xtcy.lrc", 
-            },
-            {
-                name: "璀璨冒险人",
-                artist: "周深",
-                url: "https://assets.programcx.cn/music-blog/ccmxr.mp3",
-                cover: "https://assets.programcx.cn/music-blog/image/ccmxr.webp",
-                lrc: window.location.origin + "/lrc/ccmxr.lrc", 
-            },
-            {
-                name: "敬时光",
-                artist: "周深",
-                url: "https://assets.programcx.cn/music-blog/jsg.mp3",
-                cover: "https://assets.programcx.cn/music-blog/image/jsg.webp",
-                lrc: window.location.origin + "/lrc/jsg.lrc", 
-            },
-            {
-                name: "有我",
-                artist: "周深",
-                url: "https://assets.programcx.cn/music-blog/yw.mp3",
-                cover: "https://assets.programcx.cn/music-blog/image/yw.webp",
-                lrc: window.location.origin + "/lrc/yw.lrc", 
-            },
-            {
-                name: "总有美好在路上",
-                artist: "周深",
-                url: "https://assets.programcx.cn/music-blog/zymhzls.mp3",
-                cover: "https://assets.programcx.cn/music-blog/image/zymhzls.jpg",
-                lrc: window.location.origin + "/lrc/zymhzls.lrc", 
-            },
-            {
-                name: "亲爱的旅人啊",
-                artist: "周深",
-                url: "https://assets.programcx.cn/music-blog/qadlra.mp3",
-                cover: "https://assets.programcx.cn/music-blog/image/qadlra.webp",
-                lrc: window.location.origin + "/lrc/qadlra.lrc", 
-            },
-        ],
-        audioIndex: localStorage.getItem('audioIndex') ? parseInt(localStorage.getItem('audioIndex')) : 0, 
-        volume: localStorage.getItem('volume') ? parseFloat(localStorage.getItem('volume')) : 0.7, 
-    });
+  const ap = new APlayer({
+    container: document.getElementById("aplayer"),
+    fixed: true, 
+    autoplay: true,
+    theme: "#00A2E8", 
+    loop: "all",
+    order: "list",
+    preload: true,
+    volume: 0.7,
+    mutex: true,
+    listFolded: false,
+    showlrc: true,
+    listMaxHeight: "300px",
+    lrcType: 3,
+    audio: [
+      {
+        name: "心同此愿",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-心同此愿.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-心同此愿.jpg",
+        lrc: window.location.origin + "/lrc/周深-心同此愿.lrc",
+      },
+      {
+        name: "璀璨冒险人",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-璀璨冒险人.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-璀璨冒险人.webp",
+        lrc: window.location.origin + "/lrc/周深-璀璨冒险人.lrc",
+      },
+      {
+        name: "敬时光",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-敬时光.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-敬时光.webp",
+        lrc: window.location.origin + "/lrc/周深-敬时光.lrc",
+      },
+      {
+        name: "有我",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-有我.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-有我.webp",
+        lrc: window.location.origin + "/lrc/周深-有我.lrc",
+      },
+      {
+        name: "总有美好在路上",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-总有美好在路上.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-总有美好在路上.jpg",
+        lrc: window.location.origin + "/lrc/周深-总有美好在路上.lrc",
+      },
+      {
+        name: "亲爱的旅人啊",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-亲爱的旅人啊.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-亲爱的旅人啊.webp",
+        lrc: window.location.origin + "/lrc/周深-亲爱的旅人啊.lrc",
+      },
+      {
+        name: "我爱你中国 (Live)",
+        artist:
+          "孙楠&韩红&黄绮珊&古巨基&陈楚生&王心凌&谭维维&胡彦斌&郁可唯&汪苏泷&周深&宋亚轩&杨坤&单依纯&何炅&李莎旻子",
+        url: "https://assets.programcx.cn/music-blog/songs/孙楠&韩红&黄绮珊&古巨基&陈楚生&王心凌&谭维维&胡彦斌&郁可唯&汪苏泷&周深&宋亚轩&杨坤&单依纯&何炅&李莎旻子-我爱你中国 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/孙楠&韩红&黄绮珊&古巨基&陈楚生&王心凌&谭维维&胡彦斌&郁可唯&汪苏泷&周深&宋亚轩&杨坤&单依纯&何炅&李莎旻子-我爱你中国 (Live).jpg",
+        lrc:
+          window.location.origin +
+          "/lrc/孙楠&韩红&黄绮珊&古巨基&陈楚生&王心凌&谭维维&胡彦斌&郁可唯&汪苏泷&周深&宋亚轩&杨坤&单依纯&何炅&李莎旻子-我爱你中国 (Live).lrc",
+      },
+      {
+        name: "只字不提 (Live)",
+        artist: "薛之谦&周深",
+        url: "https://assets.programcx.cn/music-blog/songs/薛之谦&周深-只字不提 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/薛之谦&周深-只字不提 (Live).jpg",
+        lrc: window.location.origin + "/lrc/薛之谦&周深-只字不提 (Live).lrc",
+      },
+      {
+        name: "一路生花 (Live)",
+        artist: "张韶涵&周深",
+        url: "https://assets.programcx.cn/music-blog/songs/张韶涵&周深-一路生花 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/张韶涵&周深-一路生花 (Live).jpg",
+        lrc: window.location.origin + "/lrc/张韶涵&周深-一路生花 (Live).lrc",
+      },
+      {
+        name: "灯火里的中国 (舒楠监制 官方正式版)",
+        artist: "张也&周深",
+        url: "https://assets.programcx.cn/music-blog/songs/张也&周深-灯火里的中国 (舒楠监制 官方正式版).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/张也&周深-灯火里的中国 (舒楠监制 官方正式版).jpg",
+        lrc:
+          window.location.origin +
+          "/lrc/张也&周深-灯火里的中国 (舒楠监制 官方正式版).lrc",
+      },
+      {
+        name: "玫瑰少年 (Live)",
+        artist: "周深&GAI周延",
+        url: "https://assets.programcx.cn/music-blog/songs/周深&GAI周延-玫瑰少年 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深&GAI周延-玫瑰少年 (Live).jpg",
+        lrc: window.location.origin + "/lrc/周深&GAI周延-玫瑰少年 (Live).lrc",
+      },
+      {
+        name: "信念",
+        artist: "周深&王者荣耀",
+        url: "https://assets.programcx.cn/music-blog/songs/周深&王者荣耀-信念.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深&王者荣耀-信念.jpg",
+        lrc: window.location.origin + "/lrc/周深&王者荣耀-信念.lrc",
+      },
+      {
+        name: "La Danza Del Dios Sol",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-La Danza Del Dios Sol.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-La Danza Del Dios Sol.jpg",
+        lrc: window.location.origin + "/lrc/周深-La Danza Del Dios Sol.lrc",
+      },
+      {
+        name: "Wala li longla",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-Wala li longla.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-Wala li longla.jpg",
+        lrc: window.location.origin + "/lrc/周深-Wala li longla.lrc",
+      },
+      {
+        name: "沉默的羔羊 (Live)",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-沉默的羔羊 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-沉默的羔羊 (Live).jpg",
+        lrc: window.location.origin + "/lrc/周深-沉默的羔羊 (Live).lrc",
+      },
+      {
+        name: "触不可及",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-触不可及.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-触不可及.jpg",
+        lrc: window.location.origin + "/lrc/周深-触不可及.lrc",
+      },
+      {
+        name: "达拉崩吧 (Live)",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-达拉崩吧 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-达拉崩吧 (Live).jpg",
+        lrc: window.location.origin + "/lrc/周深-达拉崩吧 (Live).lrc",
+      },
+      {
+        name: "大鱼",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-大鱼.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-大鱼.jpg",
+        lrc: window.location.origin + "/lrc/周深-大鱼.lrc",
+      },
+      {
+        name: "光亮",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-光亮.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-光亮.jpg",
+        lrc: window.location.origin + "/lrc/周深-光亮.lrc",
+      },
+      {
+        name: "好风起",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-好风起.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-好风起.jpg",
+        lrc: window.location.origin + "/lrc/周深-好风起.lrc",
+      },
+      {
+        name: "和光同尘",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-和光同尘.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-和光同尘.jpg",
+        lrc: window.location.origin + "/lrc/周深-和光同尘.lrc",
+      },
+      {
+        name: "花开忘忧",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-花开忘忧.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-花开忘忧.jpg",
+        lrc: window.location.origin + "/lrc/周深-花开忘忧.lrc",
+      },
+      {
+        name: "化身孤岛的鲸",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-化身孤岛的鲸.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-化身孤岛的鲸.jpg",
+        lrc: window.location.origin + "/lrc/周深-化身孤岛的鲸.lrc",
+      },
+      {
+        name: "健康到到令",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-健康到到令.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-健康到到令.jpg",
+        lrc: window.location.origin + "/lrc/周深-健康到到令.lrc",
+      },
+      {
+        name: "借过一下",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-借过一下.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-借过一下.jpg",
+        lrc: window.location.origin + "/lrc/周深-借过一下.lrc",
+      },
+      {
+        name: "空壳",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-空壳.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-空壳.jpg",
+        lrc: window.location.origin + "/lrc/周深-空壳.lrc",
+      },
+      {
+        name: "铃芽之旅",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-铃芽之旅.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-铃芽之旅.jpg",
+        lrc: window.location.origin + "/lrc/周深-铃芽之旅.lrc",
+      },
+      {
+        name: "没关系",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-没关系.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-没关系.jpg",
+        lrc: window.location.origin + "/lrc/周深-没关系.lrc",
+      },
+      {
+        name: "漂洋过海来看你",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-漂洋过海来看你.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-漂洋过海来看你.jpg",
+        lrc: window.location.origin + "/lrc/周深-漂洋过海来看你.lrc",
+      },
+      {
+        name: "起风了",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-起风了.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-起风了.jpg",
+        lrc: window.location.origin + "/lrc/周深-起风了.lrc",
+      },
+      {
+        name: "亲爱的旅人啊（翻自 木村弓）",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-亲爱的旅人啊.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-亲爱的旅人啊.webp",
+        lrc:
+          window.location.origin + "/lrc/周深-亲爱的旅人啊.lrc",
+      },
+      {
+        name: "请我不改",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-请我不改.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-请我不改.jpg",
+        lrc: window.location.origin + "/lrc/周深-请我不改.lrc",
+      },
+      {
+        name: "如愿 (Live)",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-如愿 (Live).mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-如愿 (Live).jpg",
+        lrc: window.location.origin + "/lrc/周深-如愿 (Live).lrc",
+      },
+      {
+        name: "若梦",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-若梦.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-若梦.jpg",
+        lrc: window.location.origin + "/lrc/周深-若梦.lrc",
+      },
+      {
+        name: "少管我",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-少管我.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-少管我.jpg",
+        lrc: window.location.origin + "/lrc/周深-少管我.lrc",
+      },
+      {
+        name: "太阳升起的舞蹈",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-太阳升起的舞蹈.mp3",
+        cover:
+          "https://assets.programcx.cn/music-blog/image/周深-太阳升起的舞蹈.jpg",
+        lrc: window.location.origin + "/lrc/周深-太阳升起的舞蹈.lrc",
+      },
+      {
+        name: "小美满",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-小美满.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-小美满.jpg",
+        lrc: window.location.origin + "/lrc/周深-小美满.lrc",
+      },
+      {
+        name: "虚构",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-虚构.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-虚构.jpg",
+        lrc: window.location.origin + "/lrc/周深-虚构.lrc",
+      },
+      {
+        name: "许卿安",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-许卿安.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-许卿安.jpg",
+        lrc: window.location.origin + "/lrc/周深-许卿安.lrc",
+      },
+      {
+        name: "有我",
+        artist: "周深",
+        url: "https://assets.programcx.cn/music-blog/songs/周深-有我.mp3",
+        cover: "https://assets.programcx.cn/music-blog/image/周深-有我.jpg",
+        lrc: window.location.origin + "/lrc/周深-有我.lrc",
+      },
+      {
+    name: "蜃楼",
+    artist: "周深",
+    url: "https://assets.programcx.cn/music-blog/songs/周深-蜃楼.mp3",
+    cover: "https://assets.programcx.cn/music-blog/image/周深-蜃楼.jpg",
+    lrc: window.location.origin + "/lrc/周深-蜃楼.lrc",
+}
 
-    
-    ap.on('play', function () {
-        localStorage.setItem('audioIndex', ap.list.index); 
-    });
+    ],
 
-    
-    ap.on('volumechange', function (volume) {
-        localStorage.setItem('volume', volume); 
-    });
+    audioIndex: localStorage.getItem("audioIndex")
+      ? parseInt(localStorage.getItem("audioIndex"))
+      : 0, 
+    volume: localStorage.getItem("volume")
+      ? parseFloat(localStorage.getItem("volume"))
+      : 0.7, 
+  });
 
-    ap.on('timeupdate', function () {
-        localStorage.setItem('currentTime', ap.audio.currentTime); 
-    });
+  
+  ap.on("play", function () {
+    localStorage.setItem("audioIndex", ap.list.index); 
+  });
 
-    
-    window.onload = function () {
-        if (localStorage.getItem('currentTime')) {
-            ap.audio.currentTime = parseFloat(localStorage.getItem('currentTime')); 
-            ap.play(); 
-        }
+  
+  ap.on("volumechange", function (volume) {
+    localStorage.setItem("volume", volume); 
+  });
+
+  ap.on("timeupdate", function () {
+    localStorage.setItem("currentTime", ap.audio.currentTime); 
+  });
+
+  
+  window.onload = function () {
+    if (localStorage.getItem("currentTime")) {
+      ap.audio.currentTime = parseFloat(localStorage.getItem("currentTime")); 
+      ap.play(); 
     }
+  };
 </script>
 <script>
-    fetch("/api/site/add-count?name=www", {
-        method: "POST",
-        mode: 'cors',
-    })
-    
-    var total = document.getElementById("total");
-    var count = 0;
-    fetch("/api/site/get-count?name=www", {
+  fetch("/api/site/add-count?name=www", {
+    method: "POST",
+    mode: "cors",
+  });
+  
+  var total = document.getElementById("total");
+  var count = 0;
+  fetch("/api/site/get-count?name=www", {
     method: "GET",
-    mode: 'cors',
+    mode: "cors",
     headers: {
-        "Content-Type": "application/json",
-    }
-})
-    .then((res) => res.json())  
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json()) 
     .then((data) => {
-        console.log(data);  
-        
-        const count = data.total_visited;
-        total.innerText = "访问次数统计：" + count + "次";
+      console.log(data); 
+      
+      const count = data.total_visited;
+      total.innerText = "访问次数统计：" + count + "次";
     })
     .catch((error) => {
-        console.error('Error:', error);  
+      console.error("Error:", error); 
     });
-
 </script>
 
             </main>
