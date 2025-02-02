@@ -7,7 +7,129 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
-        <lastBuildDate>Wed, 22 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 02 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Windows 安装 Ubuntu 22.04 详细教程</title>
+        <link>https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</link>
+        <pubDate>Sun, 02 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</guid>
+        <description>&lt;img src="https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/Ubuntu.png" alt="Featured image of post Windows 安装 Ubuntu 22.04 详细教程" /&gt;&lt;h2 id=&#34;一启用windows-subsystem-for-linux&#34;&gt;一、启用Windows Subsystem for Linux
+&lt;/h2&gt;&lt;p&gt;在Windows 10 21H2或更高版本上，启用Windows Subsystem for Linux。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开控制面板。&lt;/li&gt;
+&lt;li&gt;选择“程序和功能”。
+&lt;img src=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image.png&#34;
+	width=&#34;1687&#34;
+	height=&#34;944&#34;
+	srcset=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image_huc76e3fd8a011dc53e6e458eecf4bdb40_118699_480x0_resize_box_3.png 480w, https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image_huc76e3fd8a011dc53e6e458eecf4bdb40_118699_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;程序与功能&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;178&#34;
+		data-flex-basis=&#34;428px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;选择“启用或关闭Windows功能”。
+&lt;img src=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-1.png&#34;
+	width=&#34;1558&#34;
+	height=&#34;953&#34;
+	srcset=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-1_hu1fe701a385bb4dfea443ea72e3e83c01_152514_480x0_resize_box_3.png 480w, https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-1_hu1fe701a385bb4dfea443ea72e3e83c01_152514_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;启用或关闭Windows功能&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;392px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;勾选“适用于Linux的Windows子系统”。
+&lt;img src=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-2.png&#34;
+	width=&#34;625&#34;
+	height=&#34;591&#34;
+	srcset=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-2_hub751d841b4f96425522ad85678a436f4_57537_480x0_resize_box_3.png 480w, https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-2_hub751d841b4f96425522ad85678a436f4_57537_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;勾选&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;105&#34;
+		data-flex-basis=&#34;253px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;重新启动计算机。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;二安装ubuntu-2204&#34;&gt;二、安装Ubuntu 22.04
+&lt;/h2&gt;&lt;p&gt;重新启动后，会弹出一个提示更新的窗口，按Enter键等待更新完成。&lt;/p&gt;
+&lt;p&gt;1.打开PowerShell，输入以下命令安装Ubuntu 22.04：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --set-default-version &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --install -d Ubuntu
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;2.等待安装完成，按照提示设置用户名和密码。&lt;/p&gt;
+&lt;p&gt;3.此时，默认安装位置为C盘，可以按照以下步骤安装到其它盘：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --export Ubuntu F:&lt;span class=&#34;se&#34;&gt;\w&lt;/span&gt;sl&lt;span class=&#34;se&#34;&gt;\u&lt;/span&gt;buntu-backup.tar &lt;span class=&#34;c1&#34;&gt;# 导出Ubuntu备份&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --unregister Ubuntu &lt;span class=&#34;c1&#34;&gt;# 注销Ubuntu&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl --import Ubuntu F:&lt;span class=&#34;se&#34;&gt;\w&lt;/span&gt;sl&lt;span class=&#34;se&#34;&gt;\u&lt;/span&gt;buntu F:&lt;span class=&#34;se&#34;&gt;\w&lt;/span&gt;sl&lt;span class=&#34;se&#34;&gt;\u&lt;/span&gt;buntu-backup.tar --version &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 导入Ubuntu&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4.安装完成后，输入以下命令启动Ubuntu：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wsl -d Ubuntu
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-3.png&#34;
+	width=&#34;1267&#34;
+	height=&#34;623&#34;
+	srcset=&#34;https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-3_hue3eac5baf964e8bcc9f6c7c9bb49ab3b_62208_480x0_resize_box_3.png 480w, https://programcx.github.io/p/windows-%E5%AE%89%E8%A3%85-ubuntu-22.04-%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/image-3_hue3eac5baf964e8bcc9f6c7c9bb49ab3b_62208_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;203&#34;
+		data-flex-basis=&#34;488px&#34;
+	
+&gt;
+5.输入以下命令更新软件包：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt upgrade
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;6.至此，Ubuntu 22.04安装完成。&lt;/p&gt;
+&lt;p&gt;记录一下，以后有需要可以参考。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>MyBatis 动态 SQL 语句</title>
         <link>https://programcx.github.io/p/mybatis-%E5%8A%A8%E6%80%81-sql-%E8%AF%AD%E5%8F%A5/</link>
         <pubDate>Wed, 22 Jan 2025 00:00:00 +0000</pubDate>
