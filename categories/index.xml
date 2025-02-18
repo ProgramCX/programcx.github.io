@@ -7,7 +7,31 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
-        <lastBuildDate>Sun, 02 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 19 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Java</title>
+        <link>https://programcx.github.io/categories/java/</link>
+        <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/java/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>LeetCode</title>
+        <link>https://programcx.github.io/categories/leetcode/</link>
+        <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/leetcode/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>算法</title>
+        <link>https://programcx.github.io/categories/%E7%AE%97%E6%B3%95/</link>
+        <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>运维</title>
         <link>https://programcx.github.io/categories/%E8%BF%90%E7%BB%B4/</link>
         <pubDate>Sun, 02 Feb 2025 00:00:00 +0000</pubDate>
@@ -22,14 +46,6 @@
         
         <guid>https://programcx.github.io/categories/mybatis/</guid>
         <description>&lt;img src="https://programcx.github.io/categories/mybatis/MyBatis.png" alt="Featured image of post MyBatis" /&gt;</description>
-        </item>
-        <item>
-        <title>Java</title>
-        <link>https://programcx.github.io/categories/java/</link>
-        <pubDate>Sat, 16 Nov 2024 00:00:00 +0000</pubDate>
-        
-        <guid>https://programcx.github.io/categories/java/</guid>
-        <description></description>
         </item>
         <item>
         <title>Java网络编程</title>
@@ -64,27 +80,11 @@
         <description></description>
         </item>
         <item>
-        <title>LeetCode</title>
-        <link>https://programcx.github.io/categories/leetcode/</link>
-        <pubDate>Thu, 05 Sep 2024 00:00:00 +0000</pubDate>
-        
-        <guid>https://programcx.github.io/categories/leetcode/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>洛谷</title>
         <link>https://programcx.github.io/categories/%E6%B4%9B%E8%B0%B7/</link>
         <pubDate>Thu, 05 Sep 2024 00:00:00 +0000</pubDate>
         
         <guid>https://programcx.github.io/categories/%E6%B4%9B%E8%B0%B7/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>算法</title>
-        <link>https://programcx.github.io/categories/%E7%AE%97%E6%B3%95/</link>
-        <pubDate>Thu, 05 Sep 2024 00:00:00 +0000</pubDate>
-        
-        <guid>https://programcx.github.io/categories/%E7%AE%97%E6%B3%95/</guid>
         <description></description>
         </item>
         
