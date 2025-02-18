@@ -7,13 +7,13 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
-        <lastBuildDate>Wed, 19 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>LeetCode 第283题 移动零</title>
-        <link>https://programcx.github.io/p/leetcode-%E7%AC%AC283%E9%A2%98-%E7%A7%BB%E5%8A%A8%E9%9B%B6/</link>
-        <pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate>
+        <link>https://programcx.github.io/p/movezeros/</link>
+        <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://programcx.github.io/p/leetcode-%E7%AC%AC283%E9%A2%98-%E7%A7%BB%E5%8A%A8%E9%9B%B6/</guid>
-        <description>&lt;img src="https://programcx.github.io/question.png" alt="Featured image of post LeetCode 第283题 移动零" /&gt;&lt;h2 id=&#34;题目&#34;&gt;题目：
+        <guid>https://programcx.github.io/p/movezeros/</guid>
+        <description>&lt;img src="https://programcx.github.io/p/movezeros/moveZeros.gif" alt="Featured image of post LeetCode 第283题 移动零" /&gt;&lt;h2 id=&#34;题目&#34;&gt;题目：
 &lt;/h2&gt;&lt;p&gt;给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;请注意&lt;/strong&gt; ，必须在不复制数组的情况下原地对数组进行操作。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;示例 1&lt;/strong&gt;:&lt;/p&gt;
@@ -44,10 +44,10 @@
 &lt;li&gt;数组中剩下的部分自动是零，因为非零元素已经被移到了前面。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4 id=&#34;动画演示来源于网络&#34;&gt;动画演示（来源于网络）：
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://programcx.github.io/p/leetcode-%E7%AC%AC283%E9%A2%98-%E7%A7%BB%E5%8A%A8%E9%9B%B6/moveZeros.gif&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://programcx.github.io/p/movezeros/moveZeros.gif&#34;
 	width=&#34;1280&#34;
 	height=&#34;720&#34;
-	srcset=&#34;https://programcx.github.io/p/leetcode-%E7%AC%AC283%E9%A2%98-%E7%A7%BB%E5%8A%A8%E9%9B%B6/moveZeros_hud2092481d847b10166ea5a410bb5339d_928976_480x0_resize_box_1.gif 480w, https://programcx.github.io/p/leetcode-%E7%AC%AC283%E9%A2%98-%E7%A7%BB%E5%8A%A8%E9%9B%B6/moveZeros_hud2092481d847b10166ea5a410bb5339d_928976_1024x0_resize_box_1.gif 1024w&#34;
+	srcset=&#34;https://programcx.github.io/p/movezeros/moveZeros_hud2092481d847b10166ea5a410bb5339d_928976_480x0_resize_box_1.gif 480w, https://programcx.github.io/p/movezeros/moveZeros_hud2092481d847b10166ea5a410bb5339d_928976_1024x0_resize_box_1.gif 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;动画演示&#34;
