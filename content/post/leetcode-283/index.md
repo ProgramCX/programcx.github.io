@@ -1,8 +1,9 @@
 ---
 title: LeetCode 第283题 移动零
 description: 使用两种双指针解法解决移动零问题
-date: 2025-02-19
-image: question.png
+date: 2025-02-18
+image: movezeros.gif
+slug: movezeros
 categories:
     - Java
     - LeetCode
