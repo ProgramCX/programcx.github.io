@@ -17,11 +17,11 @@
         </item>
         <item>
         <title>Spring Boot</title>
-        <link>https://programcx.github.io/categories/springboot/</link>
+        <link>https://programcx.github.io/categories/spring-boot/</link>
         <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://programcx.github.io/categories/springboot/</guid>
-        <description>&lt;img src="https://programcx.github.io/categories/springboot/springboot.png" alt="Featured image of post Spring Boot" /&gt;</description>
+        <guid>https://programcx.github.io/categories/spring-boot/</guid>
+        <description></description>
         </item>
         <item>
         <title>LeetCode</title>
@@ -94,6 +94,14 @@
         
         <guid>https://programcx.github.io/categories/%E6%B4%9B%E8%B0%B7/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>Spring Boot</title>
+        <link>https://programcx.github.io/categories/springboot/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/springboot/</guid>
+        <description>&lt;img src="https://programcx.github.io/categories/springboot/springboot.png" alt="Featured image of post Spring Boot" /&gt;</description>
         </item>
         
     </channel>

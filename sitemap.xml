@@ -14,7 +14,7 @@
     <loc>https://programcx.github.io/post/</loc>
     <lastmod>2025-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://programcx.github.io/categories/springboot/</loc>
+    <loc>https://programcx.github.io/categories/spring-boot/</loc>
     <lastmod>2025-02-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://programcx.github.io/p/springboot-quartz-simple-job/</loc>
@@ -91,6 +91,8 @@
   </url><url>
     <loc>https://programcx.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://programcx.github.io/categories/springboot/</loc>
   </url><url>
     <loc>https://programcx.github.io/tags/</loc>
   </url><url>
