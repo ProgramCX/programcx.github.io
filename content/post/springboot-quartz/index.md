@@ -7,7 +7,7 @@ image: springboot.png
 slug: springboot-quartz-simple-job
 categories:
     - Java
-    - SpringBoot
+    - Spring Boot
 ---
 
 # 在Spring Boot中实现简单定时任务
