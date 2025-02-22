@@ -7,13 +7,21 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>ChengXu</copyright>
-        <lastBuildDate>Tue, 18 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 22 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://programcx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java</title>
         <link>https://programcx.github.io/categories/java/</link>
-        <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
         
         <guid>https://programcx.github.io/categories/java/</guid>
         <description></description>
+        </item>
+        <item>
+        <title>Spring Boot</title>
+        <link>https://programcx.github.io/categories/springboot/</link>
+        <pubDate>Sat, 22 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://programcx.github.io/categories/springboot/</guid>
+        <description>&lt;img src="https://programcx.github.io/categories/springboot/springboot.png" alt="Featured image of post Spring Boot" /&gt;</description>
         </item>
         <item>
         <title>LeetCode</title>
