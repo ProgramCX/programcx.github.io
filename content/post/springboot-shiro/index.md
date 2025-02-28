@@ -289,7 +289,7 @@ public class ChatController {
 在`KimiController`类中，我们需要处理回调函数，将数据通过`SseEmitter`推送给前端。我们可以在`KimiController`类中创建一个`Callback`接口的实现类，然后在`KimiService`类中调用这个实现类的方法，将数据推送给前端。
 
 ```java
-     @PostMapping("/kimi")
+    @PostMapping("/kimi")
     @ResponseBody
     private SseEmitter kimi(String message) throws IOException {
         System.out.println(message);
