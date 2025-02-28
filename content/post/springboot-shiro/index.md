@@ -242,7 +242,6 @@ public class ChatController {
     @Autowired
     private KimiService kimiService;
 
-
     @PostMapping("/kimi")
     @ResponseBody
     private SseEmitter kimi(String message) throws IOException {
@@ -339,8 +338,6 @@ package cn.programcx.springbootinit.controller;
 
 import cn.programcx.springbootinit.services.KimiService;
 import cn.programcx.springbootinit.utils.Callback;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -355,9 +352,6 @@ import java.io.IOException;
 public class ChatController {
     @Autowired
     private KimiService kimiService;
-
-    @Autowired
-    private SecurityManager securityManager;
 
     @PostMapping("/kimi")
     @ResponseBody
@@ -398,8 +392,6 @@ package cn.programcx.springbootinit.services;
 import com.alibaba.fastjson2.JSONObject;
 import okhttp3.*;
 import okio.BufferedSource;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -411,16 +403,11 @@ import cn.programcx.springbootinit.utils.Callback;
 @Service
 public class KimiService {
 
-    @Autowired
-    private SecurityManager securityManager;
-
-
     private static final OkHttpClient client = new OkHttpClient();
 
     @Async
     public CompletableFuture<String> chat(String requestContent,Callback callback) throws IOException {
         {
-            SecurityUtils.setSecurityManager(securityManager);
 
             final String url = "https://kimi.moonshot.cn/api/chat/cv031bl96bkb13hgn0p0/completion/stream";
             final String json = "{"
